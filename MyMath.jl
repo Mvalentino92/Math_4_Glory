@@ -207,6 +207,45 @@ end
 	
 #***End PolyVecEval***
 
+#***Start PolyForm***
+
+function PolyForm(Value,Order)		#For Splines. Getting a polynomial with unknown coefficients evaulated at x=Value
+	Vector = zeros(Order+1)		#Setting a vector of zeros, and setting the first value to 1 (no x attached to it)
+	Vector[1] = 1
+	for i=2:length(Vector)
+		Vector[i] = Value^(i-1)	#Raising each value to its power in the polynomial
+	end
+	Vector = Vector'	#Tranpose the array before returning
+	return Vector
+end
+
+#***EndPolyForm***
+
+#***Start PolyDiff***		#Differentiates a polynomial vector
+
+function PolyDiff(Polynomial_Vector)
+	PolyDeriv = zeros(length(Polynomial_Vector)-1)	#Length of derivative vector will of course have one less slot
+	for i=1:length(PolyDeriv)
+		PolyDeriv[i] = i*Polynomial_Vector[i+1]	#Mutiplying the power by the coefficient of each value
+	end
+	PolyDeriv = PolyDeriv'	#Transposing befor returning
+	return PolyDeriv
+end
+
+#***End PolyDiff****
+
+#***Start PolyInt***		#Integrating polynomials vectors
+
+function PolyInt(Polynomial_Vector)
+	PolyIntegral = zeros(length(Polynomial_Vector)+1)	#It will have 1 more index (The constant term, set to zero)
+	for i=2:length(PolyIntegral)				#Stting first value to zero
+		PolyIntegral[i] = Polynomial_Vector[i-1]/(i-1)	#Dividing the coeffcients by the powers
+	end
+	PolyIntegral = PolyIntegral'	#Transposing before returning
+	return PolyIntegral
+end
+
+
 
 
 	
