@@ -1,6 +1,8 @@
 
 #***Function to Compute the Arc Lenght, Decent Precision.***
 
+import SymPy.diff
+
 function ArcLen(f,x0,xend)	#Finds the arc length of funtion between two points.	
 	total = 0
 	iter = 1e-4		#Spacing Steps
@@ -246,6 +248,84 @@ function PolyInt(Polynomial_Vector)
 end
 
 
+#***Start Roots***
 
-
+function Roots(Func,x0,xend,dt)		#Finds mutiple roots of a function within a specified domain, using specified spacing
+	x = x0:dt:xend			#Spacing of 1 is reccomended unless you expect very condensed zeros
+	y = Func(x)	
+	Bool = zeros(length(y))		#Setting up a vector that will continue true and falses in the form of 1 and 0
+	for i=1:length(y)
+		if y[i] == 0
+			Bool[i] = 2				#Setting the positives equal to 1, the negatives = 0, and 0's equal = 2
+		else
+			Bool[i] = (y[i] == abs(y[i]))
+		end
+	end
 	
+	Interval = []
+	for i=1:length(y)-1
+		if ((Bool[i] == 1) && (Bool[i+1] == 0)) || ((Bool[i] == 0) && (Bool[i+1] == 1))		#Finding to points where
+			Bound = [x[i],x[i+1]]								#the signs switch
+			push!(Interval,Bound)									
+		end						#Created an array of intervals of left and right bounds for root findin
+	end
+	roots = zeros(length(Interval))
+	for i=1:length(roots)
+		roots[i] = fzero(Func,Interval[i][1],Interval[i][2])	#Iterating through calling the fzero function to find the 
+	end								#roots for each interval containing a root
+	for i=1:length(y)
+		if y[i] == 0						#If any of our originally generated y values actually 
+			push!(roots,x[i])				#contained a 0 (root), I'm tagging it on now
+		end
+	end
+	roots = sort(roots)
+	return roots			#Returning an array of all the roots
+end
+	
+
+#***End Roots***
+
+#***Start fzero***			#Will find the root of a function. Needs initial guesses		
+
+function fzero(Func,a,b)
+	Tol = 0.1			#Tolerance for the bisection method
+	Deriv = diff(Func)		#Getting the derivative for the newton method
+	x1 = 0.5*(a+b)
+	if Func(x1) == 0		#If the first guess is right, just stop.
+		x2 = x1
+	else				#Otherwise generate the second value for the while loop
+		if Func(x1)*Func(a) < 0
+			b = x1
+		else
+			a = x1
+		end
+		x2 = 0.5*(a+b)
+		if Func(x2)*Func(a) < 0
+			b = x2
+		else
+			a = x2
+		end
+		count = 0
+		while abs(x1 - x2) > Tol	#If the difference between values of x1 and x2 gets smaller than the Tol, stop.
+			x1 = x2
+			x2 = 0.5*(a+b)
+			if Func(x2)*Func(a) < 0
+				b = x2
+			else
+				a = x2
+			end
+			count += 1
+		end
+		xguess = x2			#The final x2 value from Bisection Method is the initial guess for Newtons Method
+		Tol2 = 1e-6			#The tolerance is significantly lower
+		x1 = xguess - Func(xguess)/Deriv(xguess)
+		x2 = x1 - Func(x1)/Deriv(x1)			#Getting the first two values for the while loop
+		while abs(x1 - x2) > Tol2	
+			x1 = x2					#Iterating through
+			x2 = x1 - Func(x1)/Deriv(x1)
+		end
+	end
+	return x2						#Returning the zero
+end
+
+#***End fzero***
