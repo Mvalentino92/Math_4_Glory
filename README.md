@@ -1,5 +1,4 @@
 # Numerical_Math_Functions
-Some of the functions I wrote in the various languages I use for computational mathematics. 
 
 The large majority of the functions are comprised in the single Julia file MyMath.jl.
 I decided to make this file in order to accomodate my needs while using Julia.
