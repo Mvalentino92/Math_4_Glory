@@ -34,8 +34,8 @@ def bigsum(bigger,smaller):
     #And here are all the the possible last number touches
     #Based on how big the size difference was between the numbers        
         
-    if len(smaller) == len(bigger) and a == 1:
-        final.append(a)
+    if len(smaller) == len(bigger) and a == 1:              #Upcoming codeblocks handle all possible outcomes with the "1"
+        final.append(a)                                     #carrying over.
         
         
     elif len(bigger) - len(smaller) == 1:
@@ -88,9 +88,9 @@ def bigsum(bigger,smaller):
     
     """Multiplication fuction"""
     
-def bigmult(BigList,SmallMultiplier):
+def bigmult(BigList,SmallMultiplier):           #What better way to do mutiplication then to recursively do addition?
     
-    Smult = []
+    Smult = []                                  #Just turning the SmallMutiplying number into an integer if it wasnt one already
     if type(SmallMultiplier) == list:
         for i in SmallMultiplier:
             Smult.append(str(i))
@@ -98,12 +98,12 @@ def bigmult(BigList,SmallMultiplier):
     else:
         Smult = SmallMultiplier
             
-    Blist = []
+    Blist = []                                 #Getting a duplicate list of the BigList to add over and over again.
     for i in BigList:
         Blist.append(i)
             
-    for j in range(0,Smult-1):
-        BigList = bigsum(BigList,Blist)
+    for j in range(0,Smult-1):                  #For however many interations (denoted by the size of the SmallMultiplier..
+        BigList = bigsum(BigList,Blist)         #do addition of BigList and the static Blist over and over.
     return BigList
       
         
