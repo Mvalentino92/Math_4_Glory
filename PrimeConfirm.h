@@ -1,5 +1,5 @@
 #include <stdio.h>
-//Will tell you if a number is a Prime. Works quickly up to the bounds of storage (1 trillion)
+//Will tell you if a number is a Prime. Works quickly up to around 1 trillion
 unsigned long int PrimeConfirm(unsigned long int Prime) {
     unsigned long int Num,k;
     short i,j,Tracker = 0,Odd[3] = {3,7,9}; //Setting up variables
