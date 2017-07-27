@@ -1,13 +1,13 @@
 #=This function approximates (with accuracy near 1e-12) the square root of N
-It does instantaneously by exploiting the fact that...
+It so does instantaneously by exploiting the fact that...
 Sqrt(X)*Sqrt(N/X) = Sqrt(N)
 The function will keep reducing N until it is under the bound of which the square root can be accurately and quickly attained.
 The actual square root is achieved by a continued fraction=#
 
 function Froot(N)
 	X = 1024	#X is set to 1024(a perfect square), so no accuracy is lost during sqrt(X)*sqrt(N/X)			
-	Iter = 625	#Since X is 1024, the highest possible value going through the iterations of the functions
-	Power = 0	#will in fact be 1024. So, 1024 was tested to achieve near perfect accuracy at around 500.
+	Iter = 625	#Since X is 1024, the highest possible value going through the iterations of the function
+	Power = 0	#will in fact be 1024. So, 1024 was tested to achieve accuracy of 1e-12 at around 500 iterations.
 	Deci = 0	#Iter was set to 625 for good measure (even if N was originally 1e30, it will still only take
 	while(N > X)		#about 6,250 calculations to achieve the answer)
 		Power += 1	#Tracking the amount of times N was divided by X. 
