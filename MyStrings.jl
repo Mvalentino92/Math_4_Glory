@@ -62,3 +62,25 @@ function rotL(array,n)
 	return array
 end
 
+#***Start Sort***
+
+#=This function will sort an array in non decreasing order. Destroys/deletes the original. Efficient until around 1e4=#
+
+function Sort(x)
+        y = zeros(length(x))
+        for i=1:length(x)
+                track = 1
+                best = x[1]
+                for j=1:length(x)
+                        if x[j] < best
+                                best = x[j]
+                                track = j
+                        end
+                end
+                y[i] = best
+                deleteat!(x,track)
+        end
+        return y
+end
+
+#***End Sort***
