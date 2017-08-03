@@ -67,20 +67,49 @@ end
 #=This function will sort an array in non decreasing order. Destroys/deletes the original. Efficient until around 1e4=#
 
 function Sort(x)
-        y = zeros(length(x))
+        y = zeros(length(x))    #Making a new array of zeros. Doing the transfer technique
         for i=1:length(x)
                 track = 1
-                best = x[1]
-                for j=1:length(x)
+                best = x[1]             #So the default lowest number will alwys be the first one
+                for j=1:length(x)       #Iterating through starting from the top
                         if x[j] < best
-                                best = x[j]
+                                best = x[j]             #if the number is lower, replace best
                                 track = j
                         end
                 end
-                y[i] = best
-                deleteat!(x,track)
+                y[i] = best             #best is now the lowest number in x, so put it as the first entry into y
+                deleteat!(x,track)      #So we dont just have an array of the first best, we need to delete it!
         end
-        return y
+        return y                        #return the new, and sorted vector y
 end
 
 #***End Sort***
+
+#***Begin Sort2***
+
+#Same as before, except a little bit more optimized, and doesnt destroy the original array.
+
+function Sort2(x)
+        for i=1:length(x)-1     #Only going out to the second to last elements, because the last remaining element, will be the largest
+ number!
+                hold = x[i]     #Setting a variable to hold the value that will be replaced
+                best = x[i]
+                tracker = i             #This will track if the best value was updated or not
+                for j=(i+1):length(x)
+                        if x[j] < best          #Again, keep replacing the best (lowest) value
+                                best = x[j]
+                                tracker = j
+                        end
+
+                end
+                if tracker != i                 #If tracker changed (as in the original best wasnt the smallest value)..
+                        x[i] = x[tracker]       #Then switch the values around
+                        x[tracker] = hold
+                else
+                        continue                #Otherwise, just do nothing, it was already the lowest!
+                end
+        end
+        return x
+end
+
+#***End Sort2***
