@@ -91,7 +91,6 @@ end
 
 function Sort2(x)
         for i=1:length(x)-1     #Only going out to the second to last elements, because the last remaining element, will be the largest
- number!
                 hold = x[i]     #Setting a variable to hold the value that will be replaced
                 best = x[i]
                 tracker = i             #This will track if the best value was updated or not
