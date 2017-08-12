@@ -3,7 +3,19 @@
 #***Start Count***
 
 #Counts the number of occurances of a character(s) in a string.
-
+"""
+```jldoctest
+Count(String,Character(s))
+```
+Counts the amount of times the supplied character(s) occurs in the given string.
+# Examples
+```jldoctest
+julia> My_String = "Writing code in Julia is so easy!!"
+       Num_of_occur = Count(My_String,"i")
+       print(Num_of_occur)
+       5
+```
+"""
 function Count(String,Character)
 	String_Length = length(String)		
 	Occur_Length = length(Character)
@@ -29,7 +41,20 @@ end
 #***Start rotR***
 
 #This function will rotate the elements in an array to right by the specified number of times.
-
+"""
+```jldoctest
+rotR(Array,Num_of_places)
+```
+Rotates an array the amount of places specified to the right.\n
+Works for *overshooting* as well. **Example:** If the array is of length 5, rotating 10 places will yield the same array.
+# Examples
+```jldoctest
+julia> Array = [1,2,3,4,5]
+       rotR(Array,3)
+       print(Array)
+       [3,4,5,1,2]
+```
+"""
 function rotR(array,n)
 	if n == length(array)		#If the rotation matches the number of elements itll do a perfect 360!
 		return array
@@ -48,7 +73,20 @@ end
 #***Start rotL***
 
 #This functiion will rotate the elements in array to the left by the specified number of times
-
+"""
+```jldoctest
+rotL(Array,Num_of_places)
+```
+Rotates an array the amount of places specified to the left.\n
+Works for *overshooting* as well. **Example:** If the array is of length 5, rotating 10 places will yield the same array.
+# Examples
+```jldoctest
+julia> Array = [1,2,3,4,5]
+       rotL(Array,2)
+       print(Array)
+       [3,4,5,1,2]
+```
+"""
 function rotL(array,n)
 	if n == length(array)
 		return array	#See above function!
@@ -62,11 +100,26 @@ function rotL(array,n)
 	return array
 end
 
-#***Start Sort***
+#***Start slowSort***
 
 #=This function will sort an array in non decreasing order. Destroys/deletes the original. Efficient until around 1e4=#
-
-function Sort(x)
+"""
+```jldoctest
+slowSort(Array)
+```
+Sorts an array in **non** decreasing order. Destroys the original array in the process.\n
+This function is inferior to `Sort`, advisable to use `Sort` instead.
+# Examples
+```jldoctest
+julia> x = [4,87,2,0,8]
+       y = slowSort(x)
+       print(x)
+       {} Empty Array!
+       print(y)
+       [0,2,4,8,87]
+```
+"""
+function slowSort(x)
         y = zeros(length(x))    #Making a new array of zeros. Doing the transfer technique
         for i=1:length(x)
                 track = 1
@@ -83,13 +136,26 @@ function Sort(x)
         return y                        #return the new, and sorted vector y
 end
 
-#***End Sort***
+#***End slowSort***
 
-#***Begin Sort2***
+#***Begin Sort***
 
 #Same as before, except a little bit more optimized, and doesnt destroy the original array.
-
-function Sort2(x)
+"""
+```jldoctest
+Sort(Array)
+```
+Sorts the supplied array in **non** decreasing order. Returns the original array sorted.\n
+Not intended for arrays of length 1e5++.
+# Examples
+```jldoctest
+julia> x = [4,98,3,65,8,8,9]
+       Sort(x)
+       print(x)
+       [3,4,8,8,9,65,98]
+```
+"""
+function Sort(x)
         for i=1:length(x)-1     #Only going out to the second to last elements, because the last remaining element, will be the largest
                 hold = x[i]     #Setting a variable to hold the value that will be replaced
                 best = x[i]
@@ -111,4 +177,70 @@ function Sort2(x)
         return x
 end
 
-#***End Sort2***
+#***End Sort***
+
+#***Start Sinput***
+
+"""
+```jldoctest
+Sinput(User_Prompt)
+```
+Prompts the user for String input, and saves the input to a variable.
+# Examples
+```jldoctest
+julia> Name = Sinput("What is you're name partner?: ")
+       What is you're name partner: Mike
+       print(Name)
+       Mike
+```
+"""
+function Sinput(Prompt)
+	print(Prompt)
+	chomp(readline())
+end
+
+#***End Sinput***
+
+#***Start Finput***
+"""
+```jldoctest
+Finput(User_Prompt)
+```
+Prompts the user for Float input, and saves the input to a variable.
+# Examples
+```jldoctest
+julia> Fav_Float = Finput("What is you're favorite Float?: ")
+       What is you're favorite Float?: 1.666
+       print(Fav_Float)
+       1.666
+```
+"""
+function Finput(Prompt)
+	print(Prompt)
+	parse(Float64,readline())
+end
+
+#***End Finput***
+
+#***Start Ninput***
+"""
+```jldoctest
+Ninput(User_Prompt)
+```
+Prompts the user for Int input, and saves the input to a variable.
+# Examples
+```jldoctest
+julia> Fav_Integer = Ninput("What is you're favorite Integer?: ")
+       What is you're favorite Integer?: 21
+       print(Fav_Float)
+       21
+```
+"""
+function Ninput(Prompt)
+	print(Prompt)
+	parse(Int64,readline())
+end
+
+#***End Ninput***
+
+

@@ -2,7 +2,21 @@
 #***Function to Compute the Arc Lenght, Decent Precision.***
 
 import SymPy.diff
+"""
+```jldoctest
+ArcLen(Function,x0,xend)
+```
+Computes the distance between two points of a function
 
+# Examples
+
+```jldoctest
+julia> f(x) = sin(x)
+       Length = ArcLen(f,0,5)
+       print(Length)
+       6.02
+```
+"""
 function ArcLen(f,x0,xend)	#Finds the arc length of funtion between two points.	
 	total = 0
 	iter = 1e-4		#Spacing Steps
@@ -24,7 +38,22 @@ end
 
 
 #***Romberg integration***
+"""
+```jldoctest
+RomInt(Function,x0,xend)
+```
+Uses Romberg Integration to compute the area under a curve. Very efficient speed wise, and decently accurate.\n
+f(x) = x^2 between 0 and 1 yields an accuracy of e-15 from the true value.\n
+Must be supplied a FUNCTION (See `TrapZ` or `UnevenTrapZ` for data points)
 
+# Example
+```jldoctest
+julia> f(x) = sin(x)*sin(x)
+       Area_Under_Curve = RomInt(f,0,2*pi) 
+       print(Area_Under_Curve)
+       3.141598776
+```
+"""
 function RomInt(f,x0,xend)			#Parameters are the function and two points (Uses a function, not data points!!)
 	dt = 2e-4
 	total = zeros(4)			#Setting an array of zeros to hold the four iterations of intergration
@@ -52,7 +81,20 @@ end
 #***End of Romberg function***
 
 #***Start Trapz****
-
+"""
+```jldoctest
+TrapZ(x_data_points,y_data_points)
+```
+Computes the area under a curve using the Trapazoidal Method. Data points must have even spacing (See `UnevenTrapZ` if they dont)\n
+Greater accuracy is achieved by using smaller spacing.
+```jldoctest
+julia> x = 0:1e-6:1
+       y = x.^2
+       Area_Under_Curve = TrapZ(x,y)
+       print(Area_Under_Curve)
+       0.3333333333376
+```
+"""
 function TrapZ(x,y)				#Gives area under the curve (integral), using Data Points!!
 	dt = diff(x[1:2])[1]			#Finding what the spacing is...This is for even spacing!!
 	total = (y[1]*dt/2 + y[end]*dt/2)	
@@ -65,6 +107,20 @@ end
 #***End TrapZ***
 
 #***Start UnevenTrapZ***			Gives the area under the curve using Data Points!! (For UNEQUAL SPACING)
+"""
+```jldoctest
+UnevenTrapZ(x_data_points,y_data_points)
+```
+Computes the area under the curve using the Trapazoidal method. Use when the spacing between your data points is NOT even.\n
+Will yield more accurate results if more data points are generated using the function `Lagrange` first\n
+```jldoctest
+julia> x = [0,0.1,0.25,0.33,0.5,0.8,0.97,1]
+       y = x.^2
+       Area_Under_Curve = UnevenTrapZ(x,y)
+       print(Area_Under_Curve)
+       0.33345657
+```
+"""
 function UnevenTrapZ(x,y)							#***Interpolating then using this function advised***
 	total = (y[1]*diff(x[1:2])[1]/2 + y[end]*diff(x[end-1:end])[1]/2)	#Getting the end values using different spacing
 	for i=2:length(y[1:end-1])						#Setting the other points to iterate through
@@ -77,7 +133,22 @@ end
 		
 
 #***Start of CumTrapz Function	
-
+"""
+```jldoctest
+CumTrapz(x_data_points,y_data_points)
+```
+Returns data points representating the integral of the data points provided.\n
+This function will only provide the shape of the underlying function, as the constant term of the integral can never be accounted for.\n
+For use with polynomial and trigonomic functions.
+# Example
+```jldoctest
+julia> x = 0:0.1:5
+       y = 2x
+       Y = CumTrapz(x,y)
+       plot(x,Y)
+       (This will yield a graph clearly representating the integral of x^2)
+```
+"""
 function CumTrapZ(x,y)				#This a function to estimate the numerical integral of points from a Polynomial
 	y_end = TrapZ(x,y)[1]			#First I'm finding the area under the curve of the data points
 	dt = diff(x[1:2])[1]			#For Polynomials, this number will be the same as the integral evaluated at the...
@@ -92,7 +163,20 @@ function CumTrapZ(x,y)				#This a function to estimate the numerical integral of
 end
 
 #***Start Lagrangian Interpolation***
-	
+"""
+```jldoctest
+Lagrange(x_data_points,y_data_points)
+```
+Interpolates points between the supplied data points. If N = length(x_data_points), this functin returns N*10 - 9 data points.\n
+Recommended for use with non chaotic type functions. 
+# Example using data points from function x^2
+```jldoctest
+julia> x = [0,0.1,0.5,0.55,0.9,1.4,1.53,1.8,2]
+       y = x.^2
+       Interpolated_Points = Lagrange(x,y)
+       plot(x,Interpolated_Points) ---> Will produce a smoothed out plot of x^2
+```
+"""
 function Lagrange(x,y)			#Function to interpolate more data points between existing data points
 	Left = 1			#I'm using 3 points per iteration to get values between those three points
 	Right = 3			#Setting variables for left and right indexing
@@ -169,7 +253,21 @@ end
 
 
 #***Start Taylor Series Polynomial Expansion***
-
+"""
+```jldoctest
+TaylorPoly(Function,point_of_expansion,order)
+```
+Returns a vector of coefficients representating the Taylor Series expansion of the supplied function\n
+Recommended to declare a variable for the point_of_expansion. Easier to follow-up with `TaylorEval`
+# Examples
+```jldoctest
+julia> f(x) = sin(x)
+       point_of_expansion = 0
+       Coeffs = TaylorPoly(f,point_of_expansion,5)
+       print(Coeffs)
+       [0.0,1,0.0,-0.166667,0.0,0.0083333]
+```
+"""
 function TaylorPoly(Func,point_of_expansion,order)	#Gives the taylor series appoximation in the form of a vector of coefficients
 	Polynomial_Vector = [Func(point_of_expansion)]	#Getting first coefficient for zero factorial (Will be same value)
 	for i = 1:order
@@ -186,7 +284,19 @@ end
 #***End Taylor Series Polynomial Expansion***
 
 #***Start Taylor Series Evaluation***
-
+"""
+```jldoctest
+TaylorEval(Coeff_Vector,Value(s),point_of_expansion)
+```
+Evaluates a vector of Taylor Series Coefficients at the supplied value(s)\n
+Must also supply the point of expansion used to obtain the coefficients.
+# Example with Coeff = TaylorSeries expansion of sin(x) at 0
+```jldoctest
+julia> Values = 0:0.1:1 
+       Estimated_Values = TaylorEval(Coeff,Values,0)
+       print(Estimated_Values) ---> Will produce values near perfect to sin(Values)
+```
+"""
 function TaylorEval(Coeff_Vector,Value,point_of_expansion)	#Evaluating the Taylor series appoximation for point(s)
 	Value = Value - point_of_expansion			#Subtracting the point of expansion from value(s) to get actual value.
 	Answer = PolyVecEval(Coeff_Vector,Value)
@@ -194,7 +304,20 @@ function TaylorEval(Coeff_Vector,Value,point_of_expansion)	#Evaluating the Taylo
 end
 
 #***Start PolyVecEval***
-
+"""
+```jldoctest
+PolyVecEval(Coefficients,Value(s))
+```
+Evaluates a vector as Polynomial at the supplied value(s)
+# Examples
+```jldoctest
+julia> Coefficients = [1 4 2]
+       Value = 3
+       Solution = PolyVecEval(Coefficients,Value)
+       print(Solution)
+       31 ----> 1 + 4*3 + 2*3^2
+```
+"""
 function PolyVecEval(Coeff_Vector,Value)			#Evaluates a vector as a polynomial
 	Total = zeros(length(Value))				
 	for j=1:length(Value)					#Iterating through how many values are to be evaluated
@@ -210,7 +333,19 @@ end
 #***End PolyVecEval***
 
 #***Start PolyForm***
-
+"""
+```jldoctest
+PolyForm(Value,Order)
+```
+Returns a vector of the specified order, with the coefficients being subsequent powers of the supplied Value\n
+The constant term will always be returned as 1.
+# Examples
+```jldoctest
+julia> Polynomial_Vector = PolyForm(2,5)
+       print(Polynomial_Vector)
+       [1.0 2.0 4.0 8.0 16.0,32.0]
+```
+"""
 function PolyForm(Value,Order)		#For Splines. Getting a polynomial with unknown coefficients evaulated at x=Value
 	Vector = zeros(Order+1)		#Setting a vector of zeros, and setting the first value to 1 (no x attached to it)
 	Vector[1] = 1
@@ -224,7 +359,20 @@ end
 #***EndPolyForm***
 
 #***Start PolyDiff***		#Differentiates a polynomial vector
-
+"""
+```jldoctest
+PolyDiff(Polynomial_Vector)
+```
+Differentiates the coefficients of a vector representating a polynomial\n
+The result will always yield a vector with a length of 1 less than the original
+# Examples
+```jldoctest
+julia> Polynomial_Vector = [3 1 4] ---> 3 + x + 4x^2
+       Derivative = PolyDiff(Polynomial_Vector)
+       print(Derivative)
+       [1 8] ---> 1 + 8x
+```
+"""
 function PolyDiff(Polynomial_Vector)
 	PolyDeriv = zeros(length(Polynomial_Vector)-1)	#Length of derivative vector will of course have one less slot
 	for i=1:length(PolyDeriv)
@@ -237,7 +385,20 @@ end
 #***End PolyDiff****
 
 #***Start PolyInt***		#Integrating polynomials vectors
-
+"""
+```jldoctest
+PolyInt(Polynomial_Vector)
+```
+Integrates the coefficients of a vector representating a polynomials\n
+The result will always yield a vector with a length of 1 more than the original, in the form of a new leading constant term of zero
+# Examples
+```jldoctest
+julia> Polynomial_Vector = [3 1 4] ----> 3 + x + 4x^2
+       Integral = PolyInt(Polynomial_Vector)
+       print(Integral)
+       [0 3 0.5 1.333] ---> C + 3x + 0.5x^2 + 1.333x^3
+```
+"""
 function PolyInt(Polynomial_Vector)
 	PolyIntegral = zeros(length(Polynomial_Vector)+1)	#It will have 1 more index (The constant term, set to zero)
 	for i=2:length(PolyIntegral)				#Stting first value to zero
@@ -248,24 +409,26 @@ function PolyInt(Polynomial_Vector)
 end
 
 
-#***Start Roots***
-
-function Roots(Func,x0,xend,dt)		#Finds mutiple roots of a function within a specified domain, using specified spacing
+#***Start Rootz***
+"""
+```jldoctest
+Rootz(Function,x0,xend,spacing)
+```
+Finds all available roots of the function on the supplied interval and returns them as an array.\n
+Smaller spacing will yield more accurate results.
+# Examples
+```jldoctest
+julia> f(x) = sin(4x)
+       Func_Zeros = Rootz(f,-2*pi,2*pi,pi/30)
+```
+"""
+function Rootz(Func,x0,xend,dt)		#Finds mutiple roots of a function within a specified domain, using specified spacing
 	x = x0:dt:xend			#Spacing of 1 is reccomended unless you expect very condensed zeros
 	y = Func(x)	
-	Bool = zeros(length(y))		#Setting up a vector that will continue true and falses in the form of 1 and 0
-	for i=1:length(y)
-		if y[i] == 0
-			Bool[i] = 2				#Setting the positives equal to 1, the negatives = 0, and 0's equal = 2
-		else
-			Bool[i] = (y[i] == abs(y[i]))
-		end
-	end
-	
 	Interval = []
 	for i=1:length(y)-1
-		if ((Bool[i] == 1) && (Bool[i+1] == 0)) || ((Bool[i] == 0) && (Bool[i+1] == 1))		#Finding to points where
-			Bound = [x[i],x[i+1]]								#the signs switch
+		if ((y[i] < 0) && (y[i+1] > 0) || (y[i] > 0) && (y[i+1] < 0)) #Adds the intervals where the signs switch
+			Bound = [x[i],x[i+1]]								
 			push!(Interval,Bound)									
 		end						#Created an array of intervals of left and right bounds for root findin
 	end
@@ -283,10 +446,24 @@ function Roots(Func,x0,xend,dt)		#Finds mutiple roots of a function within a spe
 end
 	
 
-#***End Roots***
+#***End Rootz***
 
 #***Start fzero***			#Will find the root of a function. Needs initial guesses		
-
+"""
+```jldoctest
+fzero(Function,a,b)
+```
+Finds the root of the function closest to the two guesses (a and b) supplied.\n
+Uses the bisection method followed by the newton method to converge quickly with great accuracy\n
+If mutiple roots are assumed, see function `Rootz`
+# Examples
+```jldoctest
+julia> f(x) = 2x - x^2
+       Func_Zero = fzero(f,-4,4)
+       print(Func_Zero)
+       2
+```
+"""
 function fzero(Func,a,b)
 	Tol = 0.1			#Tolerance for the bisection method
 	Deriv = diff(Func)		#Getting the derivative for the newton method
