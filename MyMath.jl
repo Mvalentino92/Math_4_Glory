@@ -506,3 +506,64 @@ function fzero(Func,a,b)
 end
 
 #***End fzero***
+
+#***Start Fibs***
+"""
+```jldoctest
+Fibs(Nth_Fib_Number,Optional_for_Array)
+```
+Calculates the Fibbonacci sequence up to the Nth Fibbonacci number specified.\n
+Can return either a single value (The Nth Fibbonacci number), or can return an array of all Fibbonacci numbers up to and including the Nth Fibbonacci number requested.\n
+Supply a second optional arguement as *true*, to request a return of an Array.
+# Examples
+**(Nth Fibonacci only)**
+```jldoctest
+julia> N = 10
+       Fibs(N)
+       34
+```
+**(Array up to Nth Fibbonacci)**
+```jldoctest
+julia> N = 5
+       Fibs(N,1)
+       5-element  Array{Float64,1}
+       0.0
+       1.0
+       1.0
+       2.0
+       3.0
+```
+"""
+function Fibs(N,length = false)  #I'm calling a function within a function. Testing out that methods performance. Pretty clear as well.
+	if N < 1 || typeof(N) != Int
+		print_with_color(:red,"ERROR. Must supply positive integers greater than 0")
+		return 
+	elseif  N == 1
+		return 0.0   #Taking care of possibilities of requesting just the first or first and second 
+	elseif N == 2
+		length == false ? y = 1.0 : y = [0.0,1.0]
+		return y
+	end
+	function temp(x,y)
+		return y,x+y 	#Creating the temp function to take care of generating the next Fibbonacci number.
+	end
+	if length == false
+		x,y = 0,1 	#If the user requests on the single numbers, then do not store the values
+		for i in 3:N
+			x,y = temp(x,y)
+		end
+		return y
+	else
+		x = 0           #Otherwise, store the values
+		y = zeros(N)
+		y[2] = 1
+		for i in 3:N
+			x,y[i] = temp(x,y[i-1])
+		end
+		return y
+	end
+end
+
+#**End Fibs***
+	
+
