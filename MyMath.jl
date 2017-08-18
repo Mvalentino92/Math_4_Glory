@@ -539,28 +539,46 @@ function Fibs(N,length = false)  #I'm calling a function within a function. Test
 		print_with_color(:red,"ERROR. Must supply positive integers greater than 0")
 		return 
 	elseif  N == 1
-		return 0.0   #Taking care of possibilities of requesting just the first or first and second 
+		return 0::Int   #Taking care of possibilities of requesting just the first or first and second 
 	elseif N == 2
-		length == false ? y = 1.0 : y = [0.0,1.0]
+		length == false ? y = 1::Int : y = [0::Int,1::Int]
 		return y
 	end
 	function temp(x,y)
 		return y,x+y 	#Creating the temp function to take care of generating the next Fibbonacci number.
 	end
-	if length == false
-		x,y = 0,1 	#If the user requests on the single numbers, then do not store the values
-		for i in 3:N
-			x,y = temp(x,y)
+	if N > 185
+		if length == false
+			x,y = BigInt(0)::BigInt,BigInt(1)::BigInt 	#If the user requests on the single numbers, then do not store the values
+			for i in 3:N
+				x,y = temp(x,y)
+			end
+			return y
+		else
+			x = BigInt(0)::BigInt           #Otherwise, store the values
+			y = map(BigInt,zeros(N))
+			y[2] = BigInt(1)::BigInt
+			for i in 3:N
+				x,y[i] = temp(x,y[i-1])
+			end
+			return y
 		end
-		return y
 	else
-		x = 0           #Otherwise, store the values
-		y = zeros(N)
-		y[2] = 1
-		for i in 3:N
-			x,y[i] = temp(x,y[i-1])
+		if length == false
+			x,y = Int128(0)::Int128,Int128(1)::Int128 	#If the user requests on the single numbers, then do not store the values
+			for i in 3:N
+				x,y = temp(x,y)
+			end
+			return y
+		else
+			x = Int128(0)::Int128           #Otherwise, store the values
+			y = map(Int128,zeros(N))
+			y[2] = Int128(1)::Int128
+			for i in 3:N
+				x,y[i] = temp(x,y[i-1])
+			end
+			return y
 		end
-		return y
 	end
 end
 
