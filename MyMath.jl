@@ -525,13 +525,13 @@ julia> N = 10
 **(Array up to Nth Fibbonacci)**
 ```jldoctest
 julia> N = 5
-       Fibs(N,1)
+       Fibs(N,true)
        5-element  Array{Float64,1}
-       0.0
-       1.0
-       1.0
-       2.0
-       3.0
+       0
+       1
+       1
+       2
+       3
 ```
 """
 function Fibs(N,length = false)  #I'm calling a function within a function. Testing out that methods performance. Pretty clear as well.
