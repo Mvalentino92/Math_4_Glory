@@ -3,21 +3,22 @@
 #***Start distime***
 """
 ```jldoctest
-distime(A,perB,C,perD,InitialValue)
+distime(Initial_Value,A,perB,C,perD,*Dpow,*Tpow)
 ```
-This function will do a simple conversion for Distances over Time. **Example:** meters per second, to miles per hour.\n
+This function will do a simple conversion for Distances over Time. **Example:** meters per second, to miles per hour. Keyword arugments Dpow and Tpow are set to 1 initially.
+They stand for the power to which your units are being raised to **(feet per second SQUARED, or meters CUBED, for instance)**\n
 Here is a list of input this function takes for Distances and Time respectively.\n
 **Distance:** Millimeters = `"mm"` 	Centimeters = `"cm"` 	Decimeters = `"dm"` 	Meters = `"m"` 	Kilometers = `"km"`
               \nInches = `"inch"` 		Feet = `"ft"` 		Yards = `"yard"` 		Miles = `"mile"`\n
 **Time:**     Seconds = `"sec"`		Minutes = `"min"` 	Hours = `"hour"` 		Days = `"day"`\n
-# Example for converting 5 meters per second, to miles per hour
+# Example for converting 5 meters per second squared, to miles per hour squared
 ```jldoctest
-julia> Dist_Conversion = distime("m","sec","mile","hour",5)
+julia> Dist_Conversion = distime(5,"m","sec","mile","hour",Tpow=2)
        print(Dist_Conversion)
-       11.185
+       40264.95
 ```
 """
-function distime(A,perB,C,perD,InitVal)
+function distime(InitVal,A,perB,C,perD;Dpow=1,Tpow=1)
 	
 	Time = Dict([("sec",1),("min",2),("hour",3),("day",4)]) #Using a Dict to keep track of index's for conversion
 	Tconvert = [[1,60,3600,86400],[1/60,1,60,1440],[(1/60)/60,1/60,1,24],[((1/60)/60)/24,(1/60)/24,24,1]] #Here is the indexed list of all the conversions in order
@@ -30,14 +31,14 @@ function distime(A,perB,C,perD,InitVal)
 	N1 = Distance[A]  #Here I'm getting he conversion factors for both the numerator and denominator
 	N2 = Distance[C]
 
-	Numerator = InitVal*(Dconvert[N2][N2]/Dconvert[N1][N2]) #The numerator will be the initial value , times the conversion factors
 
 	D1 = Time[perB]
 	D2 = Time[perD] #The denominator will just be a time conversion
 
+	Numerator = (Dconvert[N2][N2]/Dconvert[N1][N2]) #The numerator will be the initial value , times the conversion factors
 	Denominator = Tconvert[D2][D2]/Tconvert[D1][D2]
 
-	return Numerator/Denominator #Return the numerator over the denominator!!
+	return (InitVal*Numerator^Dpow)/Denominator^Tpow #Return the numerator over the denominator!!
 end
 
 #***End distime***
