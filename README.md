@@ -1,9 +1,8 @@
-# Numerical_Math_Functions
+# Math_4_Glory
+Some functions I wrote purely for the practice of writing them.
 
-The large majority of the functions are comprised in the single Julia file MyMath.jl.
-I decided to make this file in order to accomodate my needs while using Julia.
-It contains simple yet powerful functions I would use for my coursework, as well as my personal research and interest.
-I applied my own variations on some of the mechanics/equations in order to try and optimize the results.
+**BigInt.py** Simulates "pen and paper" math by storing individual digits of a numbers in arrays. Has two functions. One for addition, and one for multiplication.The multiplication function simply calls the addition function over and over while updating the arrays.
 
-At the end of the day, creating these functions is great practice, and moves me closer to my goal of having a personlized Julia
-library for my work.
+**Continued_Fract_sqrt.jl:** Uses continued fractions to return the square root of a number. Perfectly accurate (error of 0 or 1e-15), and instantaneous in computation. Even up to large integers.
+
+**PrimeConfirm.h:** Returns if the given number is a prime number or not. Instant return even for large integers.
