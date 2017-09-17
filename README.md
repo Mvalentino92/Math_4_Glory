@@ -7,4 +7,4 @@ Some functions I wrote purely for the practice of writing them.
 
 **PrimeConfirm.h:** Returns if the given number is a prime number or not. Instant return even for large integers.
 
-**areaOfCircle:** Calculates the area of the circle, without the use of PI. Instead, uses an estimation based on a number of  triangles approaching infinitely small areas. Accurate to a percent error of 0.04
+**areaOfCircle.java:** Calculates the area of the circle, without the use of PI. Instead, uses an estimation based on a number of  triangles approaching infinitely small areas. Accurate to a percent error of 0.04
