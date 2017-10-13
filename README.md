@@ -8,3 +8,5 @@ Some functions I wrote purely for the practice of writing them.
 **PrimeConfirm.h:** Returns if the given number is a prime number or not. Instant return even for large integers.
 
 **areaOfCircle.java:** Calculates the area of the circle, without the use of PI. Instead, uses an estimation based on a number of  triangles approaching infinitely small areas. Accurate to a percent error of 0.04
+
+**babylonian.java:** Uses the babylonian method to approximate a square root. Asks the user for their initial guess.
