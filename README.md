@@ -10,3 +10,5 @@ Some functions I wrote purely for the practice of writing them.
 **areaOfCircle.java:** Calculates the area of the circle, without the use of PI. Instead, uses an estimation based on a number of  triangles approaching infinitely small areas. Accurate to a percent error of 0.04
 
 **babylonian.java:** Uses the babylonian method to approximate a square root. Asks the user for their initial guess.
+
+**combo.java:** Calculates all possible combinations to reach a desired sum using a specified number of summands. It is in anticipation of calculating magic squares. The constraints are: The number of summands must be a perfect square of N, with 1-N, being the available numbers for the summands. All combinations must be unique.
