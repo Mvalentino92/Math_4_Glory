@@ -34,7 +34,7 @@ public class combo
 			{
 				int listSize = combinations.size();
 				boolean addThem = combos(combinations,numbers,desiredSum - numbers[i],
-					       	depth - 1, i+ 1, summands);
+					       	depth - 1, i + 1, summands);
 				if(addThem)
 				{
 					for(int k = listSize; k < count; k++)
@@ -50,8 +50,8 @@ public class combo
 	public static void main(String[] args)
 	{
 		//Setting the number to go up to from 1 (1-length), and the desired sum of all combos.
-		int length = 36;
-		int desiredSum = 111;
+		int length = 49;
+		int desiredSum = 175;
 
 		//Initialzing the list of possible combinations, as well as the remaining variables.
 		ArrayList<int[]> combinations = new ArrayList<>();
@@ -66,12 +66,21 @@ public class combo
 		//Printing each combination.
 		for(int i = 0; i < combinations.size(); i++)
 		{
+			int checkSum = 0;
+			String retval = new String();
 			System.out.print("Combo "+(i+1)+": ");
 			for(int j = 0; j < combinations.get(i).length; j++)
 			{
-				System.out.print(combinations.get(i)[j]+" ");
+				checkSum += combinations.get(i)[j];
+				retval += Integer.toString(combinations.get(i)[j]);
+				retval += " ";
 			}
-			System.out.println();
+			if(checkSum == desiredSum) System.out.println(retval);
+			else
+			{
+				System.out.println("WRONG");
+				break;
+			}
 		}
 		System.out.println("There are "+combinations.size()+" to write "+desiredSum+" as the sum of "
 				+summands+" numbers uniquely from 1 to "+length+".");
