@@ -11,6 +11,7 @@ public class Insertion
 			
 			int temp = sortedList[indexToInsert];
 			sortedList[indexToInsert] = list[i];
+			if(indexToInsert + 1 == sortedList.length) break;
 			int temp2 = sortedList[indexToInsert + 1];
 			sortedList[indexToInsert + 1] = temp;
 			for(int j = indexToInsert + 1; j < i; j++)
@@ -56,8 +57,11 @@ public class Insertion
 	public static void main(String[] args)
 	{
 		//Generating random array
-		int[] numbers = new int[100];
-		for(int i = 0; i < numbers.length; i++) numbers[i] = (int)(Math.random()*35) + 1;
+		//int[] numbers = new int[1000];
+		//for(int i = 0; i < numbers.length; i++) numbers[i] = (int)(Math.random()*45456) + 1;
+
+		//Setting array manually
+		int[] numbers = {1,3,3,4,7,5,6,7,5,5,4,2,2};
 
 		//Printing the original array of numbers
 		System.out.print("\nPrinting original numbers: ");
