@@ -24,6 +24,9 @@ public class MagicSquares
 		corners.add(bottomLeft);
 	}
 
+	public static int[] rotateValues = {12,7,2,-3,9,4,-1,-6,6,1,-4,-9,3,-2,-7,-12};
+	public static ArrayList<int[]> magicSquares = new ArrayList<>();
+
 	/*The following methods are meant to check the correspondings rows, columns, squares, and diagonals of the new numbers index.
 	 * If whichever block of elements the method is checking (whether row, column etc), contains any empty spaces (zeros), it will by default return true.
 	 * If it DOES NOT contain any empty spaces, that means it is full and it must be checked to equal the magic sum*/
@@ -198,6 +201,57 @@ public class MagicSquares
 		else return false;
 	}
 
+
+	/* These are methods that will check if the current magic square is a duplicate of one already found. 
+	 * I interpreted a duplicate as being a square that can be rotated (either 90, 180, or 270 degrees) and results in an already existing magic square.*/
+	public static int[] copyBoard(int[] board)
+	{
+		int[] duplicateBoard = new int[board.length];
+		for(int i = 0; i < board.length; i++) duplicateBoard[i] = board[i];
+		return duplicateBoard;
+	}
+
+	public static int[] rotateBoard(int[] duplicateBoard)
+	{
+		int[] rotatedBoard = new int[duplicateBoard.length];
+		for(int i = 0; i < duplicateBoard.length; i++)
+		{
+			int indexShift = rotateValues[i];
+			rotatedBoard[i] = duplicateBoard[i+indexShift];
+		}
+		return rotatedBoard;
+	}
+
+	public static boolean duplicateCheck(int[] duplicateBoard)
+	{
+		int uniqueCount = 0;
+		for(int k = 0; k < magicSquares.size(); k++)
+		{
+			for(int i = 0; i < duplicateBoard.length; i++)
+			{
+				if(duplicateBoard[i] != magicSquares.get(k)[i])
+				{
+					uniqueCount++;
+					break;
+				}
+			}
+		}
+		if(uniqueCount == magicSquares.size()) return true;
+		else return false;
+	}
+
+	public static boolean isUnique(int[] board)
+	{
+		int[] duplicateBoard = copyBoard(board);
+		for(int i = 0; i < 3; i++)
+		{
+			duplicateBoard = rotateBoard(duplicateBoard);
+			if(!(duplicateCheck(duplicateBoard))) return false;
+		}
+		return true;
+	}
+
+
 	/*The recursive backtracking method. This will iterate all possible combinations of magic squares.
 	 * It will print all of them, even the ones that exploit simply swapping some pairs of elements.*/
 	public static boolean getNextMove(int[] board, int index)
@@ -212,10 +266,10 @@ public class MagicSquares
 				{
 					if(board[N*N - 1] != 0)
 					{
-						if(doubleCheck(board))
+						if(doubleCheck(board) && isUnique(board))
 						{
-							count++;
-							printMagicSquare(board);
+							int[] goodBoard = copyBoard(board);
+							magicSquares.add(goodBoard);
 						}
 						board[index] = 0;
 						return true;
@@ -245,6 +299,7 @@ public class MagicSquares
 		addCorners();
 		int[] magicBoard = new int[N*N];
 		getNextMove(magicBoard,0);
-		System.out.println("There are "+count+" ways to write the 4X4 magic square.");
+		for(int i = 0; i < magicSquares.size(); i++) printMagicSquare(magicSquares.get(i));
+		System.out.println("Here are "+magicSquares.size()+" unique 4X4 magic squares.");
 	}
 }
