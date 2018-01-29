@@ -235,9 +235,9 @@ public class MagicSquares
 					break;
 				}
 			}
+			if(uniqueCount != k + 1) return false;
 		}
-		if(uniqueCount == magicSquares.size()) return true;
-		else return false;
+		return true;
 	}
 
 	public static boolean isUnique(int[] board)
