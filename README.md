@@ -11,6 +11,8 @@ Some functions I wrote purely for the practice of writing them.
 
 **PrimeConfirm.h:** Returns if the given number is a prime number or not. Instant return even for large integers. *(I now realize that I was converging on the square root of the number!)
 
+**PrintTriangleOfNumbers.java:** Prints a triangle of random numbers between 1-9. The triangle values are stored in a ragged array. Just some practice traversing ragged arrays, and "printing acrobatics".
+
 **QuickBubbleSort.java:** A modified implementation of the Bubble Sort algorithm that sorts in 63% of the time. 
 
 **areaOfCircle.java:** Calculates the area of the circle, without the use of PI. Instead, uses an estimation based on a number of  triangles approaching infinitely small areas. Accurate to a percent error of 0.04
