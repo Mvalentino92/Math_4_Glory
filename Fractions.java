@@ -4,18 +4,18 @@ public class Fractions
 	{
 		Fraction test = new Fraction(0.375);
 		Fraction test2 = new Fraction(0.82352941176);
+		System.out.print("The actual value is: "+test.value+" and the fraction is: ");
 		test.printFraction();
+		System.out.print("The actual value is: "+test2.value+" and the fraction is: ");
 		test2.printFraction();
-		Fraction mult = test.divide(test2);
-		mult.printFraction();
-		System.out.println(mult.value);
-		System.out.println(test.compareTo(test2));
-		/*test.printFraction();
-		test2.printFraction();
-		Fraction sum = test.add(test2);
-		sum.printFraction();
-		Fraction difference = test.subtract(test2);
-		difference.printFraction();*/
+		System.out.print("Adding the fractions yields: ");
+		(test.add(test2)).printFraction();
+		System.out.print("Subtracting the fractions yields: ");
+		(test.subtract(test2)).printFraction();
+		System.out.print("Multiplying the fractions yields: ");
+		(test.multiply(test2)).printFraction();
+		System.out.print("Dividing the fractions yields: ");
+		(test.divide(test2)).printFraction();
 	}
 }
 class Fraction implements Comparable<Fraction>
