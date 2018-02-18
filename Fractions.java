@@ -2,8 +2,8 @@ public class Fractions
 {
 	public static void main(String[] args)
 	{
-		Fraction test = new Fraction(0.375);
-		Fraction test2 = new Fraction(0.82352941176);
+		Fraction test = new Fraction(-0.957);
+		Fraction test2 = new Fraction(-0.82352941176);
 		System.out.print("The actual value is: "+test.value+" and the fraction is: ");
 		test.printFraction();
 		System.out.print("The actual value is: "+test2.value+" and the fraction is: ");
@@ -16,7 +16,10 @@ public class Fractions
 		(test.multiply(test2)).printFraction();
 		System.out.print("Dividing the fractions yields: ");
 		(test.divide(test2)).printFraction();
-		(new Fraction(54415.0053210)).printFraction();
+		(new Fraction(-5415.0053210)).printFraction();
+		Fraction test4 = new Fraction(-1,56,-56);
+		test4.simplify();
+		test4.printFraction();
 	}
 }
 class Fraction implements Comparable<Fraction>
@@ -27,14 +30,16 @@ class Fraction implements Comparable<Fraction>
 	public double value;
 	public int wholePart;
 	public double decimalPart;
+	boolean negative;
 
 	//Calulates the numerator and denominator from the value
 	public Fraction(double value)
 	{
 		this.value = value;
+		negative = value < 0 ? true : false;
 		wholePart = (int)value;
 		decimalPart = value - wholePart;
-		getFraction();
+		getFraction(negative);
 	}
 
 	//Is supplied the numerator and denominator from operations on two fractions.
@@ -45,20 +50,22 @@ class Fraction implements Comparable<Fraction>
 		this.D = D;
 		wholePart = (int)value;
 		decimalPart = value - wholePart;
+		negative = ((N < 0 || D < 0) && !(N < 0 && D < 0)) ? true : false;
 	}
 
 	//Calculate N and D.
-	public void getFraction()
+	public void getFraction(boolean negative)
 	{
+		double tempDecimalPart = negative ? -1*decimalPart : decimalPart;
 		while(true)
 		{
-			while((double)N/D > decimalPart) D++;
-			if(Math.abs((double)N/D - decimalPart) < EPSILON) break;
+			while((double)N/D > tempDecimalPart) D++;
+			if(Math.abs((double)N/D - tempDecimalPart) < EPSILON) break;
 
-			while((double)N/D < decimalPart) N++;
-			if(Math.abs((double)N/D - decimalPart) < EPSILON) break;
+			while((double)N/D < tempDecimalPart) N++;
+			if(Math.abs((double)N/D - tempDecimalPart) < EPSILON) break;
 		}
-		N = wholePart*D + N;
+		N = negative ? wholePart*D + -1*N : wholePart*D + N;
 	}
 
 	//Prints the fraction.
@@ -154,7 +161,7 @@ class Fraction implements Comparable<Fraction>
 		//Find which of the denominators is smaller value.
 		int smaller;
 		int bigger;
-		if(D < B.D)
+		if(Math.abs(D) < Math.abs(B.D))
 		{
 			smaller = D;
 			bigger = B.D;
@@ -168,7 +175,7 @@ class Fraction implements Comparable<Fraction>
 		/*Start checking for divisibility at half of the value.
 		 * If you find a value that the smaller number is divisible by,
 		 * check it against the larger value.*/
-		int half = smaller/2;
+		int half = Math.abs(smaller)/2;
 		while(half > 1)
 		{
 			if(smaller % half == 0)
@@ -184,16 +191,16 @@ class Fraction implements Comparable<Fraction>
 	public void simplify()
 	{
 		//If top and bottom are equal it reduces to 1/1.
-		if(N == D)
+		if(Math.abs(N) == Math.abs(D))
 		{
-			N = 1;
+			N = negative ? -1 : 1;
 			D = 1;
 			return;
 		}
 
 		int smaller;
 		int bigger;
-		if(value > 1)
+		if(Math.abs(value) > 1)
 		{
 			smaller = D;
 			bigger = N;
@@ -207,7 +214,7 @@ class Fraction implements Comparable<Fraction>
 		/*Start checking for divisibility at half of the value.
 		 * If you find a value that the smaller number is divisible by,
 		 * check it against the larger value.*/
-		int half = smaller/2;;
+		int half = Math.abs(smaller)/2;;
 		while(half > 1)
 		{
 			if(smaller % half == 0)
@@ -218,5 +225,10 @@ class Fraction implements Comparable<Fraction>
 		}
 		N = N/half;
 		D = D/half;
+		if((D < 0 && N < 0) || (D < 0 && N > 0))
+		{
+			N *= -1;
+			D *= -1;
+		}
 	}
 }
