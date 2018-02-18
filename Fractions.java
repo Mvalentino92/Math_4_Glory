@@ -16,6 +16,7 @@ public class Fractions
 		(test.multiply(test2)).printFraction();
 		System.out.print("Dividing the fractions yields: ");
 		(test.divide(test2)).printFraction();
+		(new Fraction(54415.0053210)).printFraction();
 	}
 }
 class Fraction implements Comparable<Fraction>
@@ -24,12 +25,15 @@ class Fraction implements Comparable<Fraction>
 	public int N = 1;
 	public int D = 1;
 	public double value;
-	public int wholePart = (int)value;
+	public int wholePart;
+	public double decimalPart;
 
 	//Calulates the numerator and denominator from the value
 	public Fraction(double value)
 	{
 		this.value = value;
+		wholePart = (int)value;
+		decimalPart = value - wholePart;
 		getFraction();
 	}
 
@@ -39,6 +43,8 @@ class Fraction implements Comparable<Fraction>
 		this.value = value;
 		this.N = N;
 		this.D = D;
+		wholePart = (int)value;
+		decimalPart = value - wholePart;
 	}
 
 	//Calculate N and D.
@@ -46,11 +52,11 @@ class Fraction implements Comparable<Fraction>
 	{
 		while(true)
 		{
-			while((double)N/D > value) D++;
-			if(Math.abs((double)N/D - value) < EPSILON) break;
+			while((double)N/D > decimalPart) D++;
+			if(Math.abs((double)N/D - decimalPart) < EPSILON) break;
 
-			while((double)N/D < value) N++;
-			if(Math.abs((double)N/D - value) < EPSILON) break;
+			while((double)N/D < decimalPart) N++;
+			if(Math.abs((double)N/D - decimalPart) < EPSILON) break;
 		}
 		N = wholePart*D + N;
 	}
@@ -162,7 +168,7 @@ class Fraction implements Comparable<Fraction>
 		/*Start checking for divisibility at half of the value.
 		 * If you find a value that the smaller number is divisible by,
 		 * check it against the larger value.*/
-		int half = smaller/2;;
+		int half = smaller/2;
 		while(half > 1)
 		{
 			if(smaller % half == 0)
