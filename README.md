@@ -3,6 +3,8 @@ Some functions I wrote purely for the practice of writing them.
 
 **BigInt.py** Simulates "pen and paper" math by storing individual digits of a numbers in arrays. Has two functions. One for addition, and one for multiplication.The multiplication function simply calls the addition function over and over while updating the arrays.
 
+**BinomialCoefficient.java:** Takes n and k as input, and uses Pascals Triangle to dynamically calculate the result. 
+
 **Continued_Fract_sqrt.jl:** Uses continued fractions to return the square root of a number. Perfectly accurate (error of 0 or 1e-15), and instantaneous in computation. Even up to large integers.
 
 **Fractions.java:** I created a Fraction class that lets you represent doubles with Fractions. It supports all the basic operations (addition,subtraction,multiplication,division), and carries them out how you would on pen and paper. Good for if you want to visualize rational numbers in fraction form.
