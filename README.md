@@ -11,6 +11,8 @@ Some functions I wrote purely for the practice of writing them.
 
 **InsertionSort.java:** Sorts an array of integers using an insertion based approach. Creates and returns a new array in the process. Before confirming it's sorted, I check to make sure the new array is correctly in descending order, and that all elements were retained correctly from the original array.
 
+**Knapsack.java:** Solves the Knapsack problem using recursion. Only feasible for n < 30.
+
 **MagicSquares.java:** Prints 864 unique 4X4 magic squares.
 
 **PrimeConfirm.h:** Returns if the given number is a prime number or not. Instant return even for large integers. *(I now realize that I was converging on the square root of the number!)
