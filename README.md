@@ -17,6 +17,10 @@ Some functions I wrote purely for the practice of writing them.
 
 **MagicSquares.java:** Prints 864 unique 4X4 magic squares.
 
+**MergeSort.java:** Executes MergeSort. Originally for int's, with an overloaded method for Strings to sort alphabetically. Wrote my own strcmp function to do so.
+
+**PE53_BigIntegerComparison.java:** Uses Project Euler question 53 to analyze the efficiency of the BigInteger Class. The problem demanded calculation of factorials up to 100. A way was found to avoid using BigInteger at first, but I was curious to see how much time I had actually saved by only using ints. The BigInteger method was slower, but not by much! 20 milliseconds compared to 200.
+
 **PrimeConfirm.h:** Returns if the given number is a prime number or not. Instant return even for large integers. *(I now realize that I was converging on the square root of the number!)
 
 **PrintTriangleOfNumbers.java:** Prints a triangle of random numbers between 1-9. The triangle values are stored in a ragged array. Just some practice traversing ragged arrays, and "printing acrobatics".
