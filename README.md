@@ -27,6 +27,8 @@ Some functions I wrote purely for the practice of writing them.
 
 **QuickBubbleSort.java:** A modified implementation of the Bubble Sort algorithm that sorts in 63% of the time. 
 
+**Threaded_VS_NormalMergeSort.java:** Compares the vanilla version of Mergesort, with a version that uses two threads. The multithreaded version splits the list of numbers, and hands each half off to a thread that will call mergesort. After they are both done executing, they are merged one final time resulting in the sorted list. Past around 60,000 the multithreaded version is faster, and receives a maximum speed boost of about half (for inputs in the millions).
+
 **areaOfCircle.java:** Calculates the area of the circle, without the use of PI. Instead, uses an estimation based on a number of  triangles approaching infinitely small areas. Accurate to a percent error of 0.04
 
 **babylonian.java:** Uses the babylonian method to approximate a square root. Asks the user for their initial guess.
