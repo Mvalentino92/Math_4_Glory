@@ -8,7 +8,7 @@ class nuclearMerge extends Thread
 
 	public void run()
 	{
-		newList = MergeSort.mergeSort(list);
+		newList = Threaded_VS_NormalMergeSort.mergeSort(list);
 	}
 }
 
