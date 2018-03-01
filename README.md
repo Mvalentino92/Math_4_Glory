@@ -34,3 +34,5 @@ Some functions I wrote purely for the practice of writing them.
 **babylonian.java:** Uses the babylonian method to approximate a square root. Asks the user for their initial guess.
 
 **combo.java:** Calculates all possible combinations to reach a desired sum using a specified number of summands. It is in anticipation of calculating magic squares. The constraints are: The number of summands must be a perfect square of N, with 1-N, being the available numbers for the summands. All combinations must be unique.
+
+**rounding.java:** Takes a double as input, and returns a double rounded to the decimal place provided. 
