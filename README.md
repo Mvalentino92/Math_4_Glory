@@ -7,6 +7,8 @@ Some functions I wrote purely for the practice of writing them.
 
 **BinomialCoefficient.java:** Takes n and k as input, and uses Pascals Triangle to dynamically calculate the result. 
 
+**CoinPartitions.java:** Generates the number of coin partitions for a number. Uses Dynamic Programming to do so, and uses the BigInteger class as well since the numbers get 25+ digits around a value of 1000.
+
 **Continued_Fract_sqrt.jl:** Uses continued fractions to return the square root of a number. Perfectly accurate (error of 0 or 1e-15), and instantaneous in computation. Even up to large integers.
 
 **Fractions.java:** I created a Fraction class that lets you represent doubles with Fractions. It supports all the basic operations (addition,subtraction,multiplication,division), and carries them out how you would on pen and paper. Good for if you want to visualize rational numbers in fraction form.
