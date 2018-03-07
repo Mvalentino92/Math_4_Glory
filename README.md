@@ -25,6 +25,8 @@ Some functions I wrote purely for the practice of writing them.
 
 **Partition_Dynamic_Versus_Recursive.java:** Calculates the partitions of numbers using a recursive approach and a dynamic approach. Compares the efficiency between the two for calculating partitions of numbers in order. Starting at 0, and ending at n (defined by user input).
 
+**PerfectNumbers.java:** Generates the first 4 perfect numbers under 10,000. A perfect number is a numbers in which the sum of all it's divisors (omitting the number itself) equals that numbers. 
+
 **PrimeConfirm.h:** Returns if the given number is a prime number or not. Instant return even for large integers. *(I now realize that I was converging on the square root of the number!)
 
 **PrintTriangleOfNumbers.java:** Prints a triangle of random numbers between 1-9. The triangle values are stored in a ragged array. Just some practice traversing ragged arrays, and "printing acrobatics".
