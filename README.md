@@ -29,6 +29,8 @@ Some functions I wrote purely for the practice of writing them.
 
 **PrimeConfirm.h:** Returns if the given number is a prime number or not. Instant return even for large integers. *(I now realize that I was converging on the square root of the number!)
 
+**PrimeFactors.java:** Prints the prime factors of a number in non-increasing order.
+
 **PrintTriangleOfNumbers.java:** Prints a triangle of random numbers between 1-9. The triangle values are stored in a ragged array. Just some practice traversing ragged arrays, and "printing acrobatics".
 
 **QuickBubbleSort.java:** A modified implementation of the Bubble Sort algorithm that sorts in 63% of the time. 
