@@ -6,20 +6,20 @@ import java.io.*;
 
 public class PrimeFactors
 {
-	public static void printFactors(int number)
+	public static void printFactors(BigInteger number)
 	{
-		if(number == 1) 
+		if(number.equals(BigInteger.ONE)) 
 		{
 			System.out.println();
 			return;
 		}
 
-		for(int i = 2; i <= number; i++)
+		for(BigInteger i = new BigInteger("2"); i.compareTo(number) != 1; i = i.add(BigInteger.ONE))
 		{
-			if(number % i == 0)
+			if(number.mod(i).equals(BigInteger.ZERO))
 			{
 				System.out.print(i+" ");
-				printFactors(number / i);
+				printFactors(number.divide(i));
 				return;
 			}
 		}
@@ -29,7 +29,7 @@ public class PrimeFactors
 	{
 		Scanner input = new Scanner(System.in);
 		System.out.print("Number: ");
-		int number = input.nextInt();
+		BigInteger number = input.nextBigInteger();
 		System.out.print(number+": ");
 		printFactors(number);
 	}
