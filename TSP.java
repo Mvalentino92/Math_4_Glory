@@ -90,7 +90,7 @@ public class TSP
 		return max;
 	}
 
-	//Overloaded method to return the first column to start in based on max column
+	//Overloaded method to return the first column to start in based on min column
 	public static int getColMin(int[][] matrix,boolean getFirstMove)
 	{
 		//Find where to start
@@ -151,7 +151,8 @@ public class TSP
 
 		int[] smallScale = {1,2,3,4,5};
 		int[] largeScale = {1,2,3,4,5};
-		int minimumDistance = 1000000;
+		int minimumDistance = getColMax(citiesFINAL)*citiesFINAL.length;
+		int trialCount = 1;
 		for(int s = 0; s < smallScale.length; s++)
 		{
 			for(int l = 0; l < largeScale.length; l++)
@@ -166,6 +167,7 @@ public class TSP
 		int originCity = currentCity;
 		int distanceTraveled = 0;
 
+		System.out.println("TRIAL "+(trialCount++));
 		System.out.println("Starting city is: "+originCity);
 
 		//Begin loop going through matrix until it is all -1's.
@@ -224,5 +226,8 @@ public class TSP
 			} //End of inner for, for changing scales
 		} //End of out for, for changing scales
 		System.out.println("The shortest distance with a heuristics approach is "+minimumDistance);
+		System.out.println("The true value is 253");
+		double percentError = Math.abs((253.0 - minimumDistance)/253.0 * 100); 
+		System.out.println("The percent error is: "+percentError);
 	}
 }
