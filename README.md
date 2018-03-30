@@ -1,6 +1,18 @@
 # Math_4_Glory
 Some functions I wrote purely for the practice of writing them.
 
+## Traveling_Salesman
+I will keep my various attempts at the TSP problem here. This is a great problem to become more familiar with adopting different algorithms and strategies to improve results on the same problem.
+
+**TSP_Circle.java:** The foundation is a greedy algorithm. The easiest TSP problem to solve is one which has it's points in a circle. I try to exploit this, by having the greedy algorithm stick to a circular path.
+
+**TSP_Cluster.java:** Another greedy algorithm approach. This greedy algorithm tries to prioritize two things in addition to the shortest distance. Going towards clusters primarily, and picking off somewhat isolated points while they are still close.
+
+**TSP_WeightedScale:** My first attempt at the TSP problem. It uses a greedy algorithm approach. I score each city based on two things. The distance it is to that city (smaller is better of course), and also the distances that can no longer be taken, because you can only visit this city once. Larger values are more ideal here. If I try to eliminate the larger values so I cant visit them, by default, I'm also making it more propable I will visit smaller values in the future. I alternate between different set scales. As in, perhaps short distance is half as important as eliminating large values this iteration. Or vice versa.
+
+## Miscellaneous
+An assortment of Math oriented functions and codes I've written.
+
 **AreaCombo.java:** Consider a game, in which you have two types of powers, A and B and there are 3 types of Areas X, Y and Z. Every second you have to switch between these areas, each area has specific properties by which your power A and power B increase or decrease. We need to keep choosing areas in such a way that our survival time is maximized. Survival time ends when any of the powers, A or B reaches less than 0.
 
 **BigInt.py** Simulates "pen and paper" math by storing individual digits of a numbers in arrays. Has two functions. One for addition, and one for multiplication.The multiplication function simply calls the addition function over and over while updating the arrays.
