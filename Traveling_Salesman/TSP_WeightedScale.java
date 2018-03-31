@@ -48,7 +48,6 @@ public class TSP_WeightedScale
 				matrix[i][j] = getDistance(xCoord[i],yCoord[i],xCoord[j],yCoord[j]);
 			}
 		}
-
 		return matrix;
 	}
 
@@ -73,7 +72,7 @@ public class TSP_WeightedScale
 	}
 
 	//Finds the min of a row, used to determine percentage grades.
-	public static int getRowMin(int[][] matrix, int row)
+	public static int getRowMin(int[][] matrix, int row, int originCity)
 	{
 		//Find where to start
 		int startColumn = 0;
@@ -83,13 +82,17 @@ public class TSP_WeightedScale
 		int min = matrix[row][startColumn];
 		for(int col = startColumn + 1; col < matrix[row].length; col++)
 		{
-			if(matrix[row][col] < min && matrix[row][col] > 0) min = matrix[row][col];
+			int currentValue = matrix[row][col];
+			if(currentValue != -1 && col != originCity)
+			{
+				if(currentValue < min) min = currentValue;
+			}
 		}
 		return min;
 	}
 	
 	//Finds the max of a row, used to determine percentage grades.
-	public static int getRowMax(int[][] matrix, int row)
+	public static int getRowMax(int[][] matrix, int row, int originCity)
 	{
 		int startColumn = 0;
 		while(matrix[0][startColumn++] == -1);
@@ -98,7 +101,11 @@ public class TSP_WeightedScale
 		int max = matrix[row][startColumn];
 		for(int col = startColumn + 1; col < matrix[row].length; col++)
 		{
-			if(matrix[row][col] > max && matrix[row][col] > 0) max = matrix[row][col];
+			int currentValue = matrix[row][col];
+			if(currentValue != -1 && col != originCity)
+			{
+				if(currentValue > max) max = currentValue;
+			}
 		}
 		return max;
 	}
@@ -171,10 +178,15 @@ public class TSP_WeightedScale
 	}
 
 	//Grabs the largeScore for the current element.
-	public static double getLargeScore(int[][] matrix, int colMin, int colMax, int col,int largeScale)
+	public static double getLargeScore(int[][] matrix, int colMin, int colMax,
+		       			   int currentRow, int col,int largeScale)
 	{
 		double currentValue = 0.0;
-		for(int row = 0; row < matrix.length; row++) currentValue += matrix[row][col];
+		for(int row = 0; row < matrix.length; row++) 
+		{
+			if(row == currentRow) continue;
+			currentValue += matrix[row][col];
+		}
 		double retval = (currentValue - colMin)/(colMax - colMin);
 		return retval/largeScale;
 	}
@@ -210,8 +222,8 @@ public class TSP_WeightedScale
 		while(cityCount != cities.length)
 		{
 			//Get all mins and max.
-			int rowMin = getRowMin(cities,currentCity);
-			int rowMax = getRowMax(cities,currentCity);
+			int rowMin = getRowMin(cities,currentCity,originCity);
+			int rowMax = getRowMax(cities,currentCity,originCity);
 			int colMin = getColMin(cities,currentCity);
 			int colMax = getColMax(cities,currentCity);
 
@@ -225,7 +237,7 @@ public class TSP_WeightedScale
 					double smallScore = getSmallScore(cities,rowMin,rowMax,
 									  currentCity,col,smallScale[s]);
 					double largeScore = getLargeScore(cities,colMin,colMax,
-									  col,largeScale[l]);
+									  currentCity,col,largeScale[l]);
 					double[] valueANDindex = {smallScore+largeScore,(double)col};
 					scores.add(valueANDindex);
 				}
@@ -247,8 +259,8 @@ public class TSP_WeightedScale
 			cityCount++;
 			if(cityCount == cities.length) 
 			{
-				distanceTraveled += cities[currentCity][originCity];
 				cities[0][originCity] = tempOriginSpot;
+				distanceTraveled += cities[currentCity][originCity];
 			}
 		}
 			if(distanceTraveled < minimumDistance) minimumDistance = distanceTraveled;
