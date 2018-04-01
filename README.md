@@ -6,7 +6,7 @@ I will keep my various attempts at the TSP problem here. This is a great problem
 
 **TSP_Circle.java:** The foundation is a greedy algorithm. The easiest TSP problem to solve is one which has it's points in a circle. I try to exploit this, by having the greedy algorithm stick to a circular path.
 
-**TSP_Cluster.java:** Another greedy algorithm approach. This greedy algorithm tries to prioritize two things in addition to the shortest distance. Going towards clusters primarily, and picking off somewhat isolated points while they are still close.
+**TSP_Cluster.java:** Another greedy algorithm approach. This greedy algorithm tries to prioritize two things in addition to the shortest distance. The higher priority is to move towards nearby clusters of points, and the lower priority is to pick off somewhat isolated points while they are still within a close distance.
 
 **TSP_Dynamic.java:** Uses a dynamic approach to try and avoid the local minima pitfalls of the greedy approach. The problem is chopped up into subproblems containing 5 cities, and a brute for attempt is used each time to obtain the definite minimum distance for each subproblem. They are added together, and if less than 5 citites remain a simple greedy algorithm is used to clean up the remaining N cities and return to the origin city. 
 
