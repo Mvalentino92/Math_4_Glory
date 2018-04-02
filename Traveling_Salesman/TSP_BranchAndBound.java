@@ -1,9 +1,9 @@
-/*Implements a Branch and Bound algorithm to attempt the traveling salesman problem.
+/*My attempt to implement a Branch and Bound algorithm for the traveling salesman problem.
  * Uses a pure greedy algorithm to find an initial global minimum.
  * Explores all possible pathways while trying to eliminate ones that clearly do not have potential
  * to beat the current minimum. Only intended for small N. 
  * The methods I use to bound promising pathways is experimental. 
- * These particular numbers have been tested on N = 17,26 and 42 to completion.
+ * This particular set-up has been tested on N = 17,26 and 42 to completion.
  * Both did not ever completely return (in a reseaonable time), but arrived at the known solutions
  * in under 10 minutes.*/
 
