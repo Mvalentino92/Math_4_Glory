@@ -287,7 +287,7 @@ public class TSP_Circle
 				{
 					int indexOfCoord = orderedCities.get(i).col;
 					double thisDistance = coordinates[indexOfCoord].getDistance(currentInnerPoint);
-					if(thisDistance <= innerRadius*1.085)
+					if(thisDistance <= innerRadius*1.025)
 					{
 						indexOfBest = indexOfCoord;
 						break;
