@@ -186,7 +186,7 @@ public class TSP_Cluster
 	public static void main(String[] args)
 	{
 		//Generates the matrix of distances.
-		int[][] cities = getMatrix(150);
+		int[][] cities = getMatrix(101);
 
 		//Get the starting position and initialize sum of travel
 		int currentCity = (int)(Math.random()*cities.length);
@@ -228,7 +228,8 @@ public class TSP_Cluster
 			{
 				while(verdict)
 				{
-					for(int i = 0; i < scores.size(); i++)
+					int i = 0;
+					for(i = i; i < scores.size(); i++)
 					{
 						if(scores.get(i).clusterScore > upper)
 						{
@@ -242,6 +243,11 @@ public class TSP_Cluster
 							verdict = false;
 							break;
 						}
+					}
+					if(i == scores.size())
+					{
+						indexOfBest = scores.get(0).col;
+						break;
 					}
 				}
 			}
