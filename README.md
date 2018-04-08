@@ -60,3 +60,5 @@ An assortment of Math oriented functions and codes I've written.
 **combo.java:** Calculates all possible combinations to reach a desired sum using a specified number of summands. It is in anticipation of calculating magic squares. The constraints are: The number of summands must be a perfect square of N, with 1-N, being the available numbers for the summands. All combinations must be unique.
 
 **rounding.java:** Takes a double as input, and returns a double rounded to the decimal place provided. 
+
+**totient.java:** Euler's totient function. One method which prints a symetrical matrix of all of the GCD's computed. One method that simply returns the number of co-primes.
