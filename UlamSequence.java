@@ -102,6 +102,7 @@ public class UlamSequence
 		ArrayList<Integer> seq2 = getSequence2(a,b,size);
 		System.out.println("Second algorithm took "+(System.nanoTime() - start)/1e9+" seconds.");
 		System.out.println("And generated a list of "+seq2.size()+" numbers.\n");
+		System.out.println("The number density is: "+(seq1.size()/(double)size)*100.0);
 
 		if(seq1.size() == seq2.size())
 		{
