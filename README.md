@@ -53,6 +53,8 @@ An assortment of Math oriented functions and codes I've written.
 
 **Threaded_VS_NormalMergeSort.java:** Compares the vanilla version of Mergesort, with a version that uses two threads. The multithreaded version splits the list of numbers, and hands each half off to a thread that will call mergesort. After they are both done executing, they are merged one final time resulting in the sorted list. Past around 60,000 the multithreaded version is faster, and receives a maximum speed boost of about half (for inputs in the millions).
 
+**UlamSequence.java:** Per Project Euler's description "For two positive integers a and b, the Ulam sequence U(a,b) is defined by U(a,b)1 = a, U(a,b)2 = b and for k > 2, U(a,b)k is the smallest integer greater than U(a,b)(k-1) which can be written in exactly one way as the sum of two distinct previous members of U(a,b)." This script will prompt you for the bound you want to go up until, and what you want to set a and b to (a < b). It will then generate the Ulam Sequence with two seperate algorithms, display the computation time and Ulam Sequence length for each (which will be the same). User is prompted for optional display of the sequence.
+
 **areaOfCircle.java:** Calculates the area of the circle, without the use of PI. Instead, uses an estimation based on a number of  triangles approaching infinitely small areas. Accurate to a percent error of 0.04
 
 **babylonian.java:** Uses the babylonian method to approximate a square root. Asks the user for their initial guess.
