@@ -27,6 +27,8 @@ An assortment of Math oriented functions and codes I've written.
 
 **Continued_Fract_sqrt.jl:** Uses continued fractions to return the square root of a number. Perfectly accurate (error of 0 or 1e-15), and instantaneous in computation. Even up to large integers.
 
+**Diophantine.hs:** Solves the Diophantine equation a^2 + b^2 + ab = c^2, where c^2 is a square number. I use a method where taking the square root of c^2 isn't necessary. Proving a certain condition true, assures that c^2 must be a square number.
+
 **Fractions.java:** I created a Fraction class that lets you represent doubles with Fractions. It supports all the basic operations (addition,subtraction,multiplication,division), and carries them out how you would on pen and paper. Good for if you want to visualize rational numbers in fraction form.
 
 **InsertionSort.java:** Sorts an array of integers using an insertion based approach. Creates and returns a new array in the process. Before confirming it's sorted, I check to make sure the new array is correctly in descending order, and that all elements were retained correctly from the original array.
