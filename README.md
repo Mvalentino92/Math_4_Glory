@@ -65,4 +65,6 @@ An assortment of Math oriented functions and codes I've written.
 
 **rounding.java:** Takes a double as input, and returns a double rounded to the decimal place provided. 
 
+**tQuickBubbleSort.java:** QuickBubbleSort but using 4 threads. The efficiency boost is definitely there. But BubbleSort is still not an efficient algorithm regardless. Essentially makes the best of a bad situation.
+
 **totient.java:** Euler's totient function. One method which prints a symetrical matrix of all of the GCD's computed. One method that simply returns the number of co-primes.
