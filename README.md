@@ -39,6 +39,8 @@ An assortment of Math oriented functions and codes I've written.
 
 **MergeSort.java:** Executes MergeSort. Originally for int's, with an overloaded method for Strings to sort alphabetically. Wrote my own strcmp function to do so.
 
+**PE484_Attempt.java:** An attempt at Project Euler problem 484 (which is ranked at 100% difficulty). The problems demands that you find the GCD of a number and it's arithmetic derivative. The algorithm I use bypasses the need to even calculate the arithmetic derivative of the numbers, thereby removing the need to calculate the GCD the conventional way as well. I do calculate the GCD by only using the original numbers prime factors. Since I need only need the prime factors of the numbers, it is more efficient to generate all the possible prime factor combinations that are possible below the threshold, then to iterate every number and calculate its prime factors. Doing it this way also allows me to automatically skip finding primes past half of the threshold as well. 
+
 **PE53_BigIntegerComparison.java:** Uses Project Euler question 53 to analyze the efficiency of the BigInteger Class. The problem demanded calculation of factorials up to 100. A way was found to avoid using BigInteger at first, but I was curious to see how much time I had actually saved by only using ints. The BigInteger method was slower, but not by much! 20 milliseconds compared to 200.
 
 **Partition_Dynamic_Versus_Recursive.java:** Calculates the partitions of numbers using a recursive approach and a dynamic approach. Compares the efficiency between the two for calculating partitions of numbers in order. Starting at 0, and ending at n (defined by user input).
