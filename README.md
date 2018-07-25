@@ -25,6 +25,8 @@ An assortment of Math oriented functions and codes I've written.
 
 **CoinPartitions.java:** Generates the number of coin partitions for a number. Uses Dynamic Programming to do so, and uses the BigInteger class as well since the numbers get 30+ digits around a value of 1000.
 
+**ContinuedFractions.java:** Attempts to find the continued fraction representation of rational and irrational numbers. Uses the FindPattern script to verify patterns for the continued fractions of irrational numbers.
+
 **Continued_Fract_sqrt.jl:** Uses continued fractions to return the square root of a number. Perfectly accurate (error of 0 or 1e-15), and instantaneous in computation. Even up to large integers.
 
 **Diophantine.hs:** Solves the Diophantine equation a^2 + b^2 + ab = c^2, where c^2 is a square number. I use a method where taking the square root of c^2 isn't necessary. Proving a certain condition true, assures that c^2 must be a square number.
