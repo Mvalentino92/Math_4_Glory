@@ -34,12 +34,12 @@ public class FindPattern
 	/*Function that attempts to keep breaking down the current child array (The first potential longest pattern)
 	 * into indentical children arrays. It will keep recursivley breaking down childs into more children arrays 
 	 * until the children are no longer indentical. Once this happens, the parent of these non-identical children
-	 * will be a potential longest pattern. This pattern must be checked to hold throughout the entire array at the end.
+	 * will be a potential longest pattern. This pattern must be checked to hold throughout the possible overhang values at the end.
 	 * Stores all results of subsequent calls in a global array.*/
-	public static void recurChildren(int[] child)
+	public static void recurChildren(int[] child,int hang)
 	{
 		int length = child.length;
-		for(int i = 2; i <= length/2; i++)
+		for(int i = 2; length/i > hang; i++)
 		{
 			if(length % i == 0)
 			{
@@ -48,8 +48,8 @@ public class FindPattern
 				if(currentChild.length == stride)
 				{
 					patterns.add(currentChild);
-					recurChildren(currentChild);
-					break;
+					recurChildren(currentChild,hang);
+					return;
 				}
 			}
 		}
@@ -61,11 +61,11 @@ public class FindPattern
 	public static void findChildren(int[] arr)
 	{
 		int length = arr.length;
-		int bound = length/2;
-		boolean foundPattern = false;
-		for(int i = length - 1; i >= bound; i--)
+		int bound = (int)(length*(2.0/3.0));
+		for(int i = length; i > bound; i--)
 		{
-			for(int j = 2; j < i/2; j++)
+			int hang = length - i;
+			for(int j = 2; i/j > hang; j++)
 			{
 				if(i % j == 0)
 				{
@@ -74,18 +74,15 @@ public class FindPattern
 					if(currentChild.length == stride)
 					{
 						patterns.add(currentChild);
-						recurChildren(currentChild);
-						foundPattern = true;
-						break;
+						recurChildren(currentChild,hang);
+						return;
 					}
 				}
 			}
-			if(foundPattern) break;
 		}
 	}
 
 	/*Finally, a function that ensures the found pattern actually constitutes a legit pattern. 
-	 * Confirms that it appears without a miss til the end of the original array.
 	 * If everything is good, return the pattern in an array, otherwise return an array only holding -1.*/
 	public static int[] getPattern(int[] arr)
 	{
@@ -97,20 +94,40 @@ public class FindPattern
 		if (patternsLength != 0) potentialPattern = patterns.get(patterns.size()-1);
 		else return dud;
 
-		int[] test = childrenMatch(arr,potentialPattern.length);
-		if(test.length == potentialPattern.length)
+		int overflow = arr.length % potentialPattern.length;
+		int start = arr.length - overflow;
+		int index = 0;
+		for(int i = start; i < arr.length; i++)
 		{
-			int overflow = arr.length % potentialPattern.length;
-			int start = arr.length - overflow;
-			int index = 0;
-			for(int i = start; i < arr.length; i++)
+			if(arr[i] != potentialPattern[index++]) return dud;
+		}
+		return potentialPattern;
+	}
+
+	/*An iterative version that works forwards instead of backwards.
+	 * The first valid pattern that it finds, is the smallest pattern*/
+	public static int[] iGetPattern(int[] arr)
+	{
+		int[] pattern = {-1};
+		int[] dud = {-1};
+		for(int i = 1; i <= arr.length/2; i++)
+		{
+			pattern = childrenMatch(arr,i);
+			if(pattern.length == i)
 			{
-				if(arr[i] != potentialPattern[index++]) return dud;
+				int overflow = arr.length % pattern.length;
+				int start = arr.length - overflow;
+				int index = 0;
+				for(int j = start; j < arr.length; j++)
+				{
+					if(arr[j] != pattern[index++]) return dud;
+				}
+				return pattern;
 			}
-			return potentialPattern;
 		}
 		return dud;
 	}
+
 
 	public static void main(String[] args)
 	{
@@ -176,7 +193,7 @@ public class FindPattern
 			       1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,
 			       1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,
 			       1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,
-			       1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3}; //pattern 1,2,3 -> shows speed.
+			       1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,4,4,2}; //pattern 1,2,3 -> shows speed.
 		ArrayList<int[]> trials = new ArrayList<>();
 		trials.add(arr1);
 		trials.add(arr2);
@@ -191,8 +208,29 @@ public class FindPattern
 		for(int j = 0; j < trials.size(); j++)
 		{
 			int[] pat = getPattern(trials.get(j));
+			patterns = new ArrayList<>();
 			for(int i = 0; i < pat.length; i++) System.out.print(pat[i]+" ");
 			System.out.println();
 		}
+
+		int[] arr = new int[200000];
+		int[] data = {1,6,7,6,6,6,5,4,5,4,1,1,1,1,7,6,8,8,8,7,6,1,3,5,4,3,3,1,2,4,5,1,
+		              4,5,4,2,34,4,6,7,5,3,1,23,3,5,7,8,0,9,8,7,6,6,7,7,6,5,4,1,23,41,
+		              1,2,3,4,4,5,3,34,5,6,6,4,1,2,3,3,4,5,6,7,6,5,5,4,3,3,4,5,4,21,
+			      1,5,6,55,4,2,1,2,3,3,3,4,3,2,1,2,2,1,4,5,6,5,5,4,2,3,4,3,1,1,3}; //Valid
+		int bound = arr.length/data.length;
+		int index = 0;
+		for(int i = 0; i < bound; i++)
+		{
+				for(int j = 0; j < data.length; j++) arr[index++] = data[j];
+		}
+		for(int i = index, j = 0; i < arr.length; i++, j++) arr[i] = data[j];;
+		
+		double start = System.nanoTime();
+		int[] pat = getPattern(arr);
+		for(int i = 0; i < pat.length; i++) System.out.print(pat[i]+" ");
+		System.out.println();
+		double end = System.nanoTime();
+		System.out.println("It took: "+((end-start)/1e9)+" seconds.");
 	}
 }
