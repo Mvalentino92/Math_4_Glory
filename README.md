@@ -29,6 +29,8 @@ An assortment of Math oriented functions and codes I've written.
 
 **Diophantine.hs:** Solves the Diophantine equation a^2 + b^2 + ab = c^2, where c^2 is a square number. I use a method where taking the square root of c^2 isn't necessary. Proving a certain condition true, assures that c^2 must be a square number.
 
+**FindPattern.java:** Finds a repeating pattern in a sequence of integers, if one is present. Works off of the constraints that for a pattern to be valid, it must appear completely at least twice in the sequence, followed by termination of the sequence, or an incomplete third repeat. There is a basic forward iterative method, and a recursive method that works backwards. 
+
 **Fractions.java:** I created a Fraction class that lets you represent doubles with Fractions. It supports all the basic operations (addition,subtraction,multiplication,division), and carries them out how you would on pen and paper. Good for if you want to visualize rational numbers in fraction form.
 
 **InsertionSort.java:** Sorts an array of integers using an insertion based approach. Creates and returns a new array in the process. Before confirming it's sorted, I check to make sure the new array is correctly in descending order, and that all elements were retained correctly from the original array.
