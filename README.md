@@ -39,6 +39,8 @@ An assortment of Math oriented functions and codes I've written.
 
 **Knapsack.java:** Solves the Knapsack problem using recursion. Only feasible for n < 30.
 
+**LexographicOrder.java:** Prints an array of integers (supplied in non-decreasing order), in Lexographic Order. The default example array is: {1,2,3,4,5,6,7,8,9,10}.
+
 **MagicSquares.java:** Prints 864 unique 4X4 magic squares.
 
 **MergeSort.java:** Executes MergeSort. Originally for int's, with an overloaded method for Strings to sort alphabetically. Wrote my own strcmp function to do so.
