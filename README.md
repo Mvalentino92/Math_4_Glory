@@ -59,7 +59,7 @@ An assortment of Math oriented functions and codes I've written.
 
 **QuickBubbleSort.java:** A modified implementation of the Bubble Sort algorithm that sorts in 63% of the time. 
 
-**SecretSort.jl:** Is it Insertion Sort? Is it BubbleSort? Is it kind of an iterative version of MergeSort that only works with arrays who's length is a power of 2? Who knows! All I know is it's pretty slow but it was fun to write! Takes 13.5 minutes to sort 2^20 (1048576). 
+**SecretSort.jl:** Is it Insertion Sort? Is it BubbleSort? Is it kind of an iterative version of MergeSort that only works with arrays who's length are a power of 2? Who knows! All I know is it's pretty slow but it was fun to write! Takes 13.5 minutes to sort 2^20 (1048576), and 53.5 minutes to sort 2^21 (2097152).
 
 **Threaded_VS_NormalMergeSort.java:** Compares the vanilla version of Mergesort, with a version that uses two threads. The multithreaded version splits the list of numbers, and hands each half off to a thread that will call mergesort. After they are both done executing, they are merged one final time resulting in the sorted list. Past around 60,000 the multithreaded version is faster, and receives a maximum speed boost of about half (for inputs in the millions).
 
