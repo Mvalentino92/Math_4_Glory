@@ -31,6 +31,8 @@ An assortment of Math oriented functions and codes I've written.
 
 **Diophantine.hs:** Solves the Diophantine equation a^2 + b^2 + ab = c^2, where c^2 is a square number. I use a method where taking the square root of c^2 isn't necessary. Proving a certain condition true, assures that c^2 must be a square number.
 
+**Explosion.jl:** Simulates an explosion in a connected space with indestructible walls. I construct a matrix of 1's and 0's. The 1's represent indestructible walls, the 0's open space. An origin point of the explosion is picked, and the 0's are changed to ones to simulate the fire spreading through the connected space. This is done through recursion.
+
 **FindPattern.java:** Finds a repeating pattern in a sequence of integers, if one is present. Works off of the constraints that for a pattern to be valid, it must appear completely at least twice in the sequence, followed by termination of the sequence, or an incomplete third repeat. There is a basic forward iterative method, and a recursive method that works backwards. 
 
 **Fractions.java:** I created a Fraction class that lets you represent doubles with Fractions. It supports all the basic operations (addition,subtraction,multiplication,division), and carries them out how you would on pen and paper. Good for if you want to visualize rational numbers in fraction form.
