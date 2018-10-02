@@ -29,6 +29,8 @@ An assortment of Math oriented functions and codes I've written.
 
 **Continued_Fract_sqrt.jl:** Uses continued fractions to return the square root of a number. Perfectly accurate (error of 0 or 1e-15), and instantaneous in computation. Even up to large integers.
 
+**DiceGame.java:** A simple dice game I wrote as an example for a friend.
+
 **Diophantine.hs:** Solves the Diophantine equation a^2 + b^2 + ab = c^2, where c^2 is a square number. I use a method where taking the square root of c^2 isn't necessary. Proving a certain condition true, assures that c^2 must be a square number.
 
 **Explosion.jl:** Simulates an explosion in a connected space with indestructible walls. I construct a matrix of 1's and 0's. The 1's represent indestructible walls, the 0's open space. An origin point of the explosion is picked, and the 0's are changed to ones to simulate the fire spreading through the connected space. This is done through recursion.
