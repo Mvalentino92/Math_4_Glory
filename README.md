@@ -59,8 +59,6 @@ An assortment of Math oriented functions and codes I've written.
 
 **PrimeFactors.java:** Prints the prime factors of a number in non-increasing order.
 
-**PrintTriangleOfNumbers.java:** Prints a triangle of random numbers between 1-9. The triangle values are stored in a ragged array. Just some practice traversing ragged arrays, and "printing acrobatics".
-
 **QuickBubbleSort.java:** A modified implementation of the Bubble Sort algorithm that sorts in 63% of the time. 
 
 **SecretSort.jl:** Is it Insertion Sort? Is it BubbleSort? Is it kind of an iterative version of MergeSort that only works with arrays who's length are a power of 2? Who knows! All I know is it's pretty slow but it was fun to write! Takes 13.5 minutes to sort 2^20 (1048576), and 53.5 minutes to sort 2^21 (2097152).
