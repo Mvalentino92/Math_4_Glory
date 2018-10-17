@@ -20,8 +20,7 @@ public class LexographicOrder
 	//Recursive function that prints all lexographic orders. Base case is two elements. 
 	public static void lexographic(int[] array,String previous)
 	{
-		int length = array.length;
-		if(length == 2)
+		if(array.length == 2)
 		{
 			System.out.println(previous+array[0]+" "+array[1]);
 			System.out.println(previous+array[1]+" "+array[0]);
@@ -30,9 +29,7 @@ public class LexographicOrder
 		else 
 		{
 			for(int i = 0; i < array.length; i++)
-			{
-				lexographic(getSubArray(array,array[i]),(previous+array[i]+" "));
-			}
+			lexographic(getSubArray(array,array[i]),(previous+array[i]+" "));
 		}
 		return;
 	}
