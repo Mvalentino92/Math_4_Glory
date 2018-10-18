@@ -49,6 +49,8 @@ An assortment of Math oriented functions and codes I've written.
 
 **MergeSort.java:** Executes MergeSort. Originally for int's, with an overloaded method for Strings to sort alphabetically. Wrote my own strcmp function to do so.
 
+**NQueens.java:** A backtracking solutions to the N queens problem. Was written with the intent for students in an Intro class to see higher level code, and experiment with inputs. Prompts the user to enter an N between 4-16 (16 being the upper bound of it's fast efficiency), and also asks if you would like to print all the board solutions.
+
 **PE53_BigIntegerComparison.java:** Uses Project Euler question 53 to analyze the efficiency of the BigInteger Class. The problem demanded calculation of factorials up to 100. A way was found to avoid using BigInteger at first, but I was curious to see how much time I had actually saved by only using ints. The BigInteger method was slower, but not by much! 20 milliseconds compared to 200.
 
 **Partition_Dynamic_Versus_Recursive.java:** Calculates the partitions of numbers using a recursive approach and a dynamic approach. Compares the efficiency between the two for calculating partitions of numbers in order. Starting at 0, and ending at n (defined by user input).
