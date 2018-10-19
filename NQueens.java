@@ -3,16 +3,15 @@ public class NQueens
 {
 	/*Static initialization of:
 	 * The Scanner and both the size and willPrint boolean returned from input methods
-	 * The arrays that will hold the marked rows and columns
+	 * The array that will hold the marked columns
 	 * The board, and the count variable to track how many solved boards were found*/
 	public static Scanner input = new Scanner(System.in);
 	public static int size = getSize();
 	public static boolean willPrint = toPrint();
-	public static int[] markRow = new int[size];
 	public static int[] markCol = new int[size];
 	public static int[][] board = new int[size][size];
 	public static int count = 0;
-
+	
 				/*Safe-guarded user input methods*/
 	//Get size from user
 	public static int getSize()
@@ -46,7 +45,7 @@ public class NQueens
 	//Checks the diagonals in all directions and ensures that they are free of other queens
 	public static boolean checkDiagonals(int row, int col)
 	{
-		//Get both miniums
+		//Get both minimums
 		int minMajor = row < col ? row : col;
 		int minMinor = (size - 1) - row < col ? (size - 1) - row : col;
 
@@ -62,10 +61,10 @@ public class NQueens
 		return true;
 	}
 
-	//Method to check if this a valid move (checks row, col, and diagonals for other queens)
+	//Method to check if this a valid move (checks column and diagonals for other queens)
 	public static boolean validMove(int row, int col)
 	{
-		return markRow[row] == 0 && markCol[col] == 0 && checkDiagonals(row,col);
+		return markCol[col] == 0 && checkDiagonals(row,col);
 	}
 
 	//Prints the board if a solution was found
@@ -93,20 +92,18 @@ public class NQueens
 		//Iterate all columns in currentRow and seek a valid move 
 		for(int currentCol = 0; currentCol < size; currentCol++)
 		{
-			//If this move is valid, update arrays and the board, then recur
+			//If this move is valid, update column array and the board, then recur
 			if(validMove(currentRow,currentCol))
 			{
-				//Update arrays and board
+				//Update column array and board
 				board[currentRow][currentCol] = 1;
-				markRow[currentRow] = -1;
 				markCol[currentCol] = -1;
 
 				//Recur
 				queens(currentRow+1);
 
-				//When we return here, unmark the spots and board
+				//When we return here, unmark the column array and board
 				board[currentRow][currentCol] = 0;
-				markRow[currentRow] = 0;
 				markCol[currentCol] = 0;
 			}
 		}
