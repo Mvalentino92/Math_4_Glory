@@ -77,6 +77,8 @@ An assortment of Math oriented functions and codes I've written.
 
 **combo.java:** Calculates all possible combinations to reach a desired sum using a specified number of summands. It is in anticipation of calculating magic squares. The constraints are: The number of summands must be a perfect square of N, with 1-N, being the available numbers for the summands. All combinations must be unique.
 
+**iQueens.java:** An iterative implementation of the backtracking algorithm used to solve the NQueens problem. Runs about 20% faster than it's recursive counterpart.
+
 **rounding.java:** Takes a double as input, and returns a double rounded to the decimal place provided. 
 
 **tQuickBubbleSort.java:** QuickBubbleSort but using 4 threads. The efficiency boost is definitely there. But BubbleSort is still not an efficient algorithm regardless. Essentially makes the best of a bad situation.
