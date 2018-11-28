@@ -59,6 +59,8 @@ An assortment of Math oriented functions and codes I've written.
 
 **PerfectNumbers.java:** Generates the first 4 perfect numbers under 10,000. A perfect number is a numbers in which the sum of all it's divisors (omitting the number itself) equals that numbers. 
 
+**Permutations.java:** Prompts the user to enter a list of elements of length 1-10. Returns all permutations of the list using an iterative dynamic approach. (Builds up a matrix of just 0, to a matrix of all subsequent permutations).
+
 **PrimeConfirm.h:** Returns if the given number is a prime number or not. Instant return even for large integers. *(I now realize that I was converging on the square root of the number!)
 
 **PrimeFactors.java:** Prints the prime factors of a number in non-increasing order.
