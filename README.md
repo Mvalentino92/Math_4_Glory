@@ -81,6 +81,8 @@ An assortment of Math oriented functions and codes I've written.
 
 **combo.java:** Calculates all possible combinations to reach a desired sum using a specified number of summands. It is in anticipation of calculating magic squares. The constraints are: The number of summands must be a perfect square of N, with 1-N, being the available numbers for the summands. All combinations must be unique.
 
+**deckcards.R:** Estimates the probability of being dealt the 10 different hands in poker. Prints a matrix showing the probabilities, the true theoretical values, and the percent error. Needs about 2-3 million iterations to accurate across all hands
+
 **iQueens.java:** An iterative implementation of the backtracking algorithm used to solve the NQueens problem. Runs about 20% faster than it's recursive counterpart.
 
 **rounding.java:** Takes a double as input, and returns a double rounded to the decimal place provided. 
