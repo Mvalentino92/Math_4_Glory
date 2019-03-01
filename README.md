@@ -83,6 +83,8 @@ An assortment of Math oriented functions and codes I've written.
 
 **deckcards.R:** Estimates the probability of being dealt the 10 different hands in poker. Prints a matrix showing the probabilities, the true theoretical values, and the percent error. Needs about 2-3 million iterations to accurate across all hands
 
+**gameOfLife.jl:** A really long file for Conways Game of Life! I wanted to cut time by chopping the matrix into distinct parts. So I could just iterate without having to check for going out of bounds on the sides and corners.
+
 **iQueens.java:** An iterative implementation of the backtracking algorithm used to solve the NQueens problem. Runs about 20% faster than it's recursive counterpart.
 
 **rounding.java:** Takes a double as input, and returns a double rounded to the decimal place provided. 
