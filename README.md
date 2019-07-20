@@ -23,6 +23,8 @@ An assortment of Math oriented functions and codes I've written.
 
 **BinomialCoefficient.java:** Takes n and k as input, and uses Pascals Triangle to dynamically calculate the result. 
 
+**ClosestPoints.java:** Computes the closest pair of points. Uses a Divide and Conquer approach.
+
 **CoinPartitions.java:** Generates the number of coin partitions for a number. Uses Dynamic Programming to do so, and uses the BigInteger class as well since the numbers get 30+ digits around a value of 1000.
 
 **ContinuedFractions.java:** Attempts to find the continued fraction representation of rational and irrational numbers. Uses the FindPattern script to verify patterns for the continued fractions of irrational numbers.
