@@ -53,6 +53,8 @@ An assortment of Math oriented functions and codes I've written.
 
 **NQueens.java:** A backtracking solution to the N queens problem. Was written with the intent for students in an Intro class to see higher level code, and experiment with inputs. Prompts the user to enter an N between 4-16 (16 being the upper bound of it's fast efficiency), and also asks if you would like to print all the board solutions.
 
+**NumberMind.zip:** Solves Project Euler 185 with a backtracking algorithm. Went back and redid this problem more cleanly and efficiently.
+
 **NumberSums_Tree_Vs_Recursion:** Given a list of numbers and some bound (denoted n), find all possible unique sums that could arise from the list. For instance the list {1,2,3} with n = 100, would result in {1,2,3,4,5,6} where 4 = (1 + 3), 5 = (2 + 3), and 6 = (1 + 2 + 3). Each number may only be used a single time. My program compares the efficiency of doing this with a simple recursive implementation, against using a Tree structure to descend through all possible combinations iteratively. The recursive approach is superior in every way. It's twice as fast, and doesn't suffer from the overhead of creating objects and using lot's of memory like the Tree Structure does. But, figuring out how to write the Tree Structure was very good practice and a nice way of observing the possible combinations of this problem.
 
 **PE53_BigIntegerComparison.java:** Uses Project Euler question 53 to analyze the efficiency of the BigInteger Class. The problem demanded calculation of factorials up to 100. A way was found to avoid using BigInteger at first, but I was curious to see how much time I had actually saved by only using ints. The BigInteger method was slower, but not by much! 20 milliseconds compared to 200.
