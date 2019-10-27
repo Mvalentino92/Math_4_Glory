@@ -41,6 +41,8 @@ An assortment of Math oriented functions and codes I've written.
 
 **Fractions.java:** I created a Fraction class that lets you represent doubles with Fractions. It supports all the basic operations (addition,subtraction,multiplication,division), and carries them out how you would on pen and paper. Good for if you want to visualize rational numbers in fraction form.
 
+**GraphFunctions.jl** Checks by brute force if two graphs represented as adjacency matrices are isomorphic.
+
 **InsertionSort.java:** Sorts an array of integers using an insertion based approach. Creates and returns a new array in the process. Before confirming it's sorted, I check to make sure the new array is correctly in descending order, and that all elements were retained correctly from the original array.
 
 **Knapsack.java:** Solves the Knapsack problem using recursion. Only feasible for n < 30.
