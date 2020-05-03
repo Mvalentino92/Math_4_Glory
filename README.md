@@ -92,6 +92,7 @@ An assortment of Math oriented functions and codes I've written.
 **iQueens.java:** An iterative implementation of the backtracking algorithm used to solve the NQueens problem. Runs about 20% faster than it's recursive counterpart.
 
 **juliaset.jl:** It's the Julia set, IN JULIA. Haha! Makes cool pictures of random fractals. Throws them in a folder for you. Enjoy.
+
 **rounding.java:** Takes a double as input, and returns a double rounded to the decimal place provided. 
 
 **tQuickBubbleSort.java:** QuickBubbleSort but using 4 threads. The efficiency boost is definitely there. But BubbleSort is still not an efficient algorithm regardless. Essentially makes the best of a bad situation.
